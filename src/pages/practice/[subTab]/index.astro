@@ -1,0 +1,81 @@
+---
+/**
+ * One page per Practice sub-tab, generated from the `children` of the
+ * Practice entry in nav.ts. Add a sub-tab there and its page appears here.
+ */
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Container from '../../../components/Container.astro';
+import Card from '../../../components/Card.astro';
+import ComingSoon from '../../../components/ComingSoon.astro';
+import Icon from '../../../components/Icon.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import SubTabs from '../../../components/SubTabs.astro';
+import { navItem, type NavChild } from '../../../data/nav';
+import { url } from '../../../lib/links';
+
+export const getStaticPaths = (async () => {
+  const exercises = await getCollection('practice');
+  return (navItem('/practice').children ?? []).map((child) => ({
+    params: { subTab: child.slug },
+    props: { child, exercises: exercises.filter((e) => e.data.subTab === child.slug) },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  child: NavChild;
+  exercises: Awaited<ReturnType<typeof getCollection<'practice'>>>;
+}
+const { child, exercises } = Astro.props;
+const page = navItem('/practice');
+
+const difficultyStyle = {
+  easy: 'text-success',
+  medium: 'text-accent',
+  hard: 'text-primary',
+} as const;
+---
+
+<BaseLayout title={`${child.label} · ${page.label}`} description={child.description}>
+  <PageHeader eyebrow={page.label} icon={page.icon} title={child.label} description={child.description} />
+  <SubTabs parent={page} />
+
+  <Container class="mt-8">
+    {
+      exercises.length > 0 ? (
+        <ul class="grid gap-4 sm:grid-cols-2">
+          {exercises.map((ex) => (
+            <li>
+              <Card href={url(`/practice/${child.slug}/${ex.id}`)} class="flex h-full flex-col">
+                <div class="flex items-center gap-2">
+                  <span class:list={['inline-flex items-center gap-1 text-xs font-semibold capitalize', difficultyStyle[ex.data.difficulty]]}>
+                    <Icon name="target" size={12} strokeWidth={2.2} />
+                    {ex.data.difficulty}
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs text-muted">
+                    <Icon name="clock" size={12} />
+                    ~{ex.data.timeMinutes} min
+                  </span>
+                </div>
+                <h2 class="mt-2.5 font-serif text-lg font-semibold leading-snug text-fg">{ex.data.title}</h2>
+                {ex.data.skills.length > 0 && <p class="mt-1.5 flex-1 text-sm text-muted">Builds: {ex.data.skills.join(', ')}</p>}
+                <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                  Start <Icon name="arrow-right" size={16} class="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="rounded-2xl border border-dashed border-border bg-surface/60 p-8 text-center text-muted">
+          Exercises for {child.label} are on their way.
+        </div>
+      )
+    }
+
+    <section class="mt-12">
+      <ComingSoon phase={4} title="More on the way" items={['2–3 exercises per sub-tab is the target — more are being added over time', 'Spaced repetition for the quiz sub-tab (Phase 7)']} />
+    </section>
+  </Container>
+</BaseLayout>

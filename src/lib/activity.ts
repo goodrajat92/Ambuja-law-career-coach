@@ -10,7 +10,8 @@ import { KEYS, readJSON, writeJSON } from './storage';
 const MAX_DAYS_KEPT = 400;
 
 export interface Progress {
-  exercisesDone: number;
+  /** Slugs of completed practice exercises (kept as a set, so revisiting one doesn't double-count it). */
+  exercisesCompleted: string[];
   topicsRead: string[];
 }
 
@@ -34,7 +35,7 @@ export function recordVisit(today: string = isoDate()): void {
 }
 
 export function getProgress(): Progress {
-  return { exercisesDone: 0, topicsRead: [], ...readJSON<Partial<Progress>>(KEYS.progress, {}) };
+  return { exercisesCompleted: [], topicsRead: [], ...readJSON<Partial<Progress>>(KEYS.progress, {}) };
 }
 
 export function getActivitySummary(today: string = isoDate()): ActivitySummary {
@@ -69,7 +70,7 @@ export function getActivitySummary(today: string = isoDate()): ActivitySummary {
     daysActive: days.size,
     currentStreak,
     bestStreak,
-    exercisesDone: progress.exercisesDone,
+    exercisesDone: progress.exercisesCompleted.length,
     topicsRead: progress.topicsRead.length,
     lastWeek,
   };

@@ -22,4 +22,21 @@ const learn = defineCollection({
   }),
 });
 
-export const collections = { learn };
+const practice = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/practice' }),
+  schema: z.object({
+    title: z.string(),
+    subTab: z.enum(['drafting', 'review', 'research', 'communication', 'negotiation', 'analysis', 'quiz']),
+    difficulty: z.enum(['easy', 'medium', 'hard']),
+    timeMinutes: z.number(),
+    skills: z.array(z.string()).default([]),
+    relatedLearn: z.array(z.string()).default([]), // slugs of related learn topics
+    // Self-assessment checklist, shown before the model answer is revealed.
+    rubric: z.array(z.string()),
+    // Revealed only when the learner clicks "Show model answer". Kept as
+    // plain paragraphs (not markdown) to avoid rendering markdown twice.
+    modelAnswer: z.array(z.string()),
+  }),
+});
+
+export const collections = { learn, practice };

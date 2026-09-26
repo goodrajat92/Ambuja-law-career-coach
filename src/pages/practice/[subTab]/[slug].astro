@@ -1,0 +1,84 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Container from '../../../components/Container.astro';
+import ExerciseWorkspace from '../../../components/ExerciseWorkspace.astro';
+import Icon from '../../../components/Icon.astro';
+import Tag from '../../../components/Tag.astro';
+import { navItem } from '../../../data/nav';
+import { url } from '../../../lib/links';
+
+export const getStaticPaths = (async () => {
+  const exercises = await getCollection('practice');
+  return exercises.map((ex) => ({ params: { subTab: ex.data.subTab, slug: ex.id }, props: { exercise: ex } }));
+}) satisfies GetStaticPaths;
+
+const { exercise } = Astro.props;
+const { Content } = await render(exercise);
+const practice = navItem('/practice');
+const subTabLabel = practice.children?.find((c) => c.slug === exercise.data.subTab)?.label ?? exercise.data.subTab;
+
+const relatedTopics = (
+  await Promise.all(exercise.data.relatedLearn.map((slug) => getEntry('learn', slug)))
+).filter((t) => t !== undefined);
+
+const difficultyStyle = {
+  easy: 'text-success',
+  medium: 'text-accent',
+  hard: 'text-primary',
+} as const;
+---
+
+<BaseLayout title={`${exercise.data.title} · ${subTabLabel}`} description={exercise.data.title}>
+  <Container size="narrow" class="animate-rise pb-16 pt-10 sm:pt-14">
+    <a href={url(`/practice/${exercise.data.subTab}`)} class="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-muted hover:text-fg">
+      <Icon name="arrow-right" size={16} class="rotate-180" />
+      Back to {subTabLabel}
+    </a>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2">
+      <Tag color={5}>{subTabLabel}</Tag>
+      <span class:list={['inline-flex items-center gap-1 text-xs font-semibold capitalize', difficultyStyle[exercise.data.difficulty]]}>
+        <Icon name="target" size={12} strokeWidth={2.2} />
+        {exercise.data.difficulty}
+      </span>
+      <span class="inline-flex items-center gap-1 text-xs text-muted">
+        <Icon name="clock" size={12} />
+        ~{exercise.data.timeMinutes} min
+      </span>
+    </div>
+
+    <h1 class="mt-3 text-3xl font-semibold leading-tight text-fg sm:text-4xl">{exercise.data.title}</h1>
+
+    {
+      exercise.data.skills.length > 0 && (
+        <p class="mt-3 flex flex-wrap items-center gap-1.5 text-sm text-muted">
+          <Icon name="sparkles" size={15} class="text-accent" />
+          Builds: {exercise.data.skills.join(', ')}
+        </p>
+      )
+    }
+
+    <div class="prose prose-neutral mt-8 max-w-none">
+      <Content />
+    </div>
+
+    {
+      relatedTopics.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-2">
+          {relatedTopics.map((t) => (
+            <a href={url(`/learn/${t!.id}`)} class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-fg hover:border-primary/40">
+              <Icon name="book" size={13} class="text-primary" />
+              {t!.data.title}
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    <div class="mt-10 border-t border-border pt-8">
+      <ExerciseWorkspace slug={exercise.id} rubric={exercise.data.rubric} modelAnswer={exercise.data.modelAnswer} />
+    </div>
+  </Container>
+</BaseLayout>

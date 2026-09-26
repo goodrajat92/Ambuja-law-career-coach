@@ -34,7 +34,13 @@ Update this file whenever a feature is finished.
   - [x] 8 topics seeded, each citing primary sources verified before writing (Companies Act, SEBI ICDR, FEMA NDI Rules, Indian Contract Act, IBC) — see each topic's own "TODO: verify" notes for anything time-sensitive
   - [ ] 2 more topics to reach the ~10 target (e.g. competition law deal-value threshold, GIFT City/IFSC)
   - [ ] Pagefind search across topics (Phase 7)
-- [ ] **Phase 4 — Practice:** exercise template (editor, timer, rubric, hidden model answer), 2–3 exercises per sub-tab
+- [x] **Phase 4 — Practice** (mostly done)
+  - [x] Content collection schema (`practice`, in `src/content.config.ts`)
+  - [x] Exercise template (`ExerciseWorkspace.astro`): autosaved writing area, optional stopwatch, self-assessment rubric, model answer hidden until revealed, self-score saved to progress
+  - [x] Completed exercises feed the same streak/progress widget as Learn's "mark as read" (`src/lib/progress.ts`)
+  - [x] 1 exercise per sub-tab seeded (7 total): drafting (ROFR clause), review (indemnity clause), research (CIRP vs scheme memo), communication (client email), negotiation (liquidation preference), analysis (term sheet math), quiz (recall)
+  - [ ] 2–3 exercises per sub-tab is the CLAUDE.md target — only 1/sub-tab done so far
+  - [ ] Daily practice prompt on Home still rotates through sub-tabs rather than a specific exercise — needs a "prompt of the day" picker once the pool is bigger
 - [ ] **Phase 5 — Notes:** IndexedDB storage interface, CRUD, tags, search, export/import
 - [ ] **Phase 6 — Think Ahead:** trend briefs, career paths, skills roadmap, reading list, reflections
 - [ ] **Phase 7 — Polish:** Pagefind search, PWA, Lighthouse audit, optional AI enrichment
@@ -45,7 +51,7 @@ Update this file whenever a feature is finished.
 - Add an icon in **one place**: `src/lib/icons.ts`, then use `<Icon name="..." />`.
 - All colors are CSS variables in `src/styles/global.css` (`--bg`, `--surface`, `--primary`, `--cat-1..8`, ...). Never hardcode a color in a component.
 - Internal links always go through `url()` from `src/lib/links.ts` so the GitHub Pages base path is included.
-- The GitHub repo is `goodrajat92/Ambuja-law-career-coach`; the site is `https://goodrajat92.github.io/Ambuja-law-career-coach/`. GitHub Pages needs to be switched to "GitHub Actions" as the source in the repo's Settings → Pages before the workflow can deploy (one-time, manual).
+- The GitHub repo is `goodrajat92/Ambuja-law-career-coach`; the site is live at `https://goodrajat92.github.io/Ambuja-law-career-coach/`, deploying automatically from `main` via the Actions workflow.
 
 ## Backlog / ideas (unscheduled)
 
