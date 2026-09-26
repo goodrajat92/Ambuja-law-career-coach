@@ -18,7 +18,13 @@ Update this file whenever a feature is finished.
   - [x] Navigation cards to every tab
   - [x] Streak/progress widget layout (`StreakWidget.astro`), backed by localStorage (`src/lib/activity.ts`)
   - [ ] Grow the quote list toward 365+, well-attributed
-- [ ] **Phase 2 — News:** fetch pipeline (`scripts/fetch-news.mjs`), source config, filters, top headlines on Home
+- [x] **Phase 2 — News**
+  - [x] Fetch pipeline (`scripts/fetch-news.mjs`) — dependency-free RSS/Atom + JSON API parser, dedupes by URL, keyword-categorizes, writes `src/data/news/YYYY-MM-DD.json`, prunes >90 days, never fails the build on a down source
+  - [x] 8 verified working sources (`src/data/news-sources.json`): Bar & Bench, SCC Online Blog, RBI, SEBI (India); SCOTUSblog, US Federal Register (US); UK FCA; ESMA (EU)
+  - [x] News page (`NewsExplorer.astro`): client-side filters for region, category, date range, source, plus keyword search
+  - [x] Top headlines wired into Home
+  - [ ] LiveLaw (feed currently 500s), MCA (403s), IFSCA and MAS (no working feed found) — revisit sources
+  - [ ] Wire `ai-enrich.mjs` in once Phase 2's optional AI step is written (original 1–2 sentence summaries instead of the feed's own teaser text)
 - [ ] **Phase 3 — Learn:** content collection schema, listing + topic pages, ~10 seed topics
 - [ ] **Phase 4 — Practice:** exercise template (editor, timer, rubric, hidden model answer), 2–3 exercises per sub-tab
 - [ ] **Phase 5 — Notes:** IndexedDB storage interface, CRUD, tags, search, export/import

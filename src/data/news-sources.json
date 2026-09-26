@@ -1,0 +1,10 @@
+[
+  { "name": "Bar & Bench", "url": "https://www.barandbench.com/feed", "type": "rss", "country": "India", "defaultCategory": "other" },
+  { "name": "SCC Online Blog", "url": "https://www.scconline.com/blog/feed", "type": "rss", "country": "India", "defaultCategory": "other" },
+  { "name": "RBI Press Releases", "url": "https://rbi.org.in/pressreleases_rss.xml", "type": "rss", "country": "India", "defaultCategory": "regulatory" },
+  { "name": "SEBI", "url": "https://www.sebi.gov.in/sebirss.xml", "type": "rss", "country": "India", "defaultCategory": "securities" },
+  { "name": "SCOTUSblog", "url": "https://www.scotusblog.com/feed/", "type": "rss", "country": "US", "defaultCategory": "other" },
+  { "name": "US Federal Register", "url": "https://www.federalregister.gov/api/v1/articles.json?per_page=20&order=newest&conditions%5Bterm%5D=securities+OR+%22venture+capital%22+OR+merger", "type": "api", "format": "federal-register", "country": "US", "defaultCategory": "regulatory" },
+  { "name": "UK FCA", "url": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=financial-conduct-authority", "type": "rss", "country": "UK", "defaultCategory": "regulatory" },
+  { "name": "ESMA", "url": "https://www.esma.europa.eu/rss.xml", "type": "rss", "country": "EU", "defaultCategory": "regulatory" }
+]

@@ -1,52 +1,47 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
-import Card from '../../components/Card.astro';
-import ComingSoon from '../../components/ComingSoon.astro';
 import Icon from '../../components/Icon.astro';
+import NewsExplorer from '../../components/NewsExplorer.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Tag from '../../components/Tag.astro';
 import { navItem } from '../../data/nav';
-import { newsCategories, newsRegions } from '../../data/taxonomy';
+import { newsItems } from '../../lib/news';
 
 const page = navItem('/news');
+const lastUpdated = newsItems[0]?.publishedAt;
+const updatedFmt = lastUpdated
+  ? new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }).format(new Date(lastUpdated))
+  : null;
 ---
 
 <BaseLayout title={page.label} description={page.description}>
-  <PageHeader eyebrow="Daily briefing" icon={page.icon} title="Legal news, filtered for deal lawyers" description={page.description} />
+  <PageHeader eyebrow="Daily briefing" icon={page.icon} title="Legal news, filtered for deal lawyers" description={page.description}>
+    <p class="mt-4 flex items-center gap-2 text-sm text-muted">
+      <Icon name="clock" size={16} />
+      {
+        newsItems.length > 0 ? (
+          <span>
+            {newsItems.length} stories from {new Set(newsItems.map((i) => i.sourceName)).size} sources · last fetched {updatedFmt} IST
+          </span>
+        ) : (
+          <span>No stories fetched yet — the daily pipeline runs at 6:00 AM IST.</span>
+        )
+      }
+    </p>
+  </PageHeader>
 
   <Container>
-    <div class="grid gap-5 lg:grid-cols-2">
-      <Card>
-        <h2 class="flex items-center gap-2 text-lg font-semibold text-fg">
-          <Icon name="globe" size={20} class="text-primary" /> Regions
-        </h2>
-        <ul class="mt-4 flex flex-wrap gap-2">
-          {newsRegions.map((r) => <li class="rounded-full border border-border bg-surface-2 px-3 py-1 text-sm text-fg">{r}</li>)}
-        </ul>
-      </Card>
-      <Card>
-        <h2 class="flex items-center gap-2 text-lg font-semibold text-fg">
-          <Icon name="layers" size={20} class="text-primary" /> Categories
-        </h2>
-        <ul class="mt-4 flex flex-wrap gap-2">
-          {newsCategories.map((c) => <li><Tag color={c.color}>{c.label}</Tag></li>)}
-        </ul>
-      </Card>
-    </div>
-
-    <section class="mt-12">
-      <ComingSoon
-        phase={2}
-        items={[
-          'Fresh headlines every morning at 6:00 AM IST',
-          'Filter by region, category, date range and source',
-          'Keyword search across the archive',
-          'A short original summary and a link to the source for every item',
-          'About 90 days of archive',
-          '"Save to notes" on any story',
-        ]}
-      />
-    </section>
+    {
+      newsItems.length > 0 ? (
+        <NewsExplorer items={newsItems} />
+      ) : (
+        <div class="rounded-2xl border border-dashed border-border bg-surface/60 p-8 text-center text-muted">
+          <p>
+            Once <code class="rounded bg-surface-2 px-1.5 py-0.5 text-fg">scripts/fetch-news.mjs</code> runs (daily, via GitHub Actions), headlines
+            from SEBI, RBI, courts and global regulators will appear here — filterable by region, category, date range, source, and keyword.
+          </p>
+        </div>
+      )
+    }
   </Container>
 </BaseLayout>

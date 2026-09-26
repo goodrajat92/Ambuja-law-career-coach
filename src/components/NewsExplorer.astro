@@ -1,0 +1,164 @@
+---
+/**
+ * Client-side news browser: region, category, date-range and source
+ * filters plus keyword search, all run in the browser over the JSON
+ * embedded by this component (no server, per CLAUDE.md's "static site
+ * only" + "filtering is done client-side over JSON data").
+ */
+import Icon from './Icon.astro';
+import Tag from './Tag.astro';
+import { newsCategories } from '../data/taxonomy';
+import type { NewsItem } from '../lib/news';
+
+interface Props {
+  items: NewsItem[];
+}
+const { items } = Astro.props;
+
+const categoryLabel = new Map(newsCategories.map((c) => [c.slug, c.label]));
+const categoryColor = new Map(newsCategories.map((c) => [c.slug, c.color]));
+const regions = [...new Set(items.map((i) => i.country))].sort();
+const sources = [...new Set(items.map((i) => i.sourceName))].sort();
+const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
+---
+
+<div data-news-explorer>
+  <div class="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-4 shadow-card">
+    <label class="flex min-w-0 flex-1 items-center gap-2 rounded-xl border border-border bg-surface-2 px-3 py-2 sm:min-w-[14rem] sm:flex-none">
+      <Icon name="newspaper" size={16} class="shrink-0 text-muted" />
+      <span class="sr-only">Search headlines</span>
+      <input
+        type="search"
+        data-filter="search"
+        placeholder="Search headlines..."
+        class="w-full min-w-0 bg-transparent text-sm text-fg placeholder:text-muted focus:outline-none"
+      />
+    </label>
+
+    <select data-filter="region" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+      <option value="">All regions</option>
+      {regions.map((r) => <option value={r}>{r}</option>)}
+    </select>
+
+    <select data-filter="category" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+      <option value="">All categories</option>
+      {newsCategories.map((c) => <option value={c.slug}>{c.label}</option>)}
+    </select>
+
+    <select data-filter="range" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+      <option value="">Any time</option>
+      <option value="1">Last 24 hours</option>
+      <option value="7">Last 7 days</option>
+      <option value="30" selected>Last 30 days</option>
+      <option value="90">Last 90 days</option>
+    </select>
+
+    <select data-filter="source" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+      <option value="">All sources</option>
+      {sources.map((s) => <option value={s}>{s}</option>)}
+    </select>
+
+    <button
+      type="button"
+      data-clear-filters
+      class="ml-auto inline-flex min-h-11 items-center gap-1.5 rounded-xl px-3 text-sm font-medium text-muted hover:bg-surface-2 hover:text-fg"
+    >
+      Clear filters
+    </button>
+  </div>
+
+  <p data-news-count class="mt-4 text-sm text-muted"></p>
+
+  <ul class="mt-3 grid gap-3">
+    {
+      items.map((item) => (
+        <li
+          data-news-item
+          data-region={item.country}
+          data-category={item.category}
+          data-source={item.sourceName}
+          data-published={item.publishedAt}
+          data-search={`${item.headline} ${item.summary} ${item.sourceName}`.toLowerCase()}
+        >
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group block rounded-2xl border border-border bg-surface p-5 shadow-card transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lift"
+          >
+            <div class="flex flex-wrap items-center gap-2 text-xs text-muted">
+              <span class="font-semibold text-fg">{item.sourceName}</span>
+              <span aria-hidden="true">·</span>
+              <span>{item.country}</span>
+              <span aria-hidden="true">·</span>
+              <time datetime={item.publishedAt}>{dateFmt.format(new Date(item.publishedAt))}</time>
+              <Tag color={categoryColor.get(item.category) ?? 8} class="ml-auto">
+                {categoryLabel.get(item.category) ?? item.category}
+              </Tag>
+            </div>
+            <h3 class="mt-2 flex items-start gap-2 font-serif text-lg font-semibold leading-snug text-fg">
+              <span class="flex-1">{item.headline}</span>
+              <Icon name="arrow-right" size={18} class="mt-1 shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
+            </h3>
+            {item.summary && <p class="mt-1.5 text-sm leading-relaxed text-muted">{item.summary}</p>}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p data-news-empty class="hidden rounded-2xl border border-dashed border-border bg-surface/60 p-8 text-center text-muted">
+    No stories match these filters. Try widening the date range or clearing a filter.
+  </p>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-news-explorer]');
+  if (root) {
+    const items = [...root.querySelectorAll<HTMLLIElement>('[data-news-item]')];
+    const countEl = root.querySelector('[data-news-count]')!;
+    const emptyEl = root.querySelector('[data-news-empty]')!;
+    const filters = {
+      search: root.querySelector<HTMLInputElement>('[data-filter="search"]')!,
+      region: root.querySelector<HTMLSelectElement>('[data-filter="region"]')!,
+      category: root.querySelector<HTMLSelectElement>('[data-filter="category"]')!,
+      range: root.querySelector<HTMLSelectElement>('[data-filter="range"]')!,
+      source: root.querySelector<HTMLSelectElement>('[data-filter="source"]')!,
+    };
+
+    function apply() {
+      const q = filters.search.value.trim().toLowerCase();
+      const region = filters.region.value;
+      const category = filters.category.value;
+      const source = filters.source.value;
+      const rangeDays = filters.range.value ? Number(filters.range.value) : null;
+      const cutoff = rangeDays ? Date.now() - rangeDays * 86_400_000 : null;
+
+      let visible = 0;
+      for (const li of items) {
+        const matches =
+          (!region || li.dataset.region === region) &&
+          (!category || li.dataset.category === category) &&
+          (!source || li.dataset.source === source) &&
+          (!cutoff || new Date(li.dataset.published!).getTime() >= cutoff) &&
+          (!q || li.dataset.search!.includes(q));
+        li.classList.toggle('hidden', !matches);
+        if (matches) visible++;
+      }
+      countEl.textContent = `Showing ${visible} of ${items.length} ${items.length === 1 ? 'story' : 'stories'}`;
+      emptyEl.classList.toggle('hidden', visible > 0);
+    }
+
+    Object.values(filters).forEach((el) => el.addEventListener('input', apply));
+    root.querySelector('[data-clear-filters]')!.addEventListener('click', () => {
+      filters.search.value = '';
+      filters.region.value = '';
+      filters.category.value = '';
+      filters.range.value = '';
+      filters.source.value = '';
+      apply();
+    });
+
+    apply();
+  }
+</script>

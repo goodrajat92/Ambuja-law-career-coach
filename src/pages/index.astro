@@ -12,17 +12,23 @@ import NavCard from '../components/NavCard.astro';
 import QuoteCard from '../components/QuoteCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import StreakWidget from '../components/StreakWidget.astro';
+import Tag from '../components/Tag.astro';
 import { nav, navItem } from '../data/nav';
 import { site } from '../data/site';
+import { newsCategories } from '../data/taxonomy';
 import { pickForDate } from '../lib/daily';
 import { formatLongDate } from '../lib/dates';
 import { url } from '../lib/links';
+import { topHeadlines } from '../lib/news';
 
 // Until the exercise pool exists (Phase 4), rotate a daily practice focus
 // through the Practice sub-tabs.
 const practice = navItem('/practice');
 const focus = pickForDate(practice.children ?? [])!;
 const quickLinks = nav.filter((n) => n.href !== '/');
+const headlines = topHeadlines(5);
+const categoryColor = new Map(newsCategories.map((c) => [c.slug, c.color]));
+const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' });
 ---
 
 <BaseLayout>
@@ -81,18 +87,49 @@ const quickLinks = nav.filter((n) => n.href !== '/');
     <!-- Top legal news -->
     <section class="mt-14" aria-labelledby="news-heading">
       <SectionHeading id="news-heading" title="Today's top legal news" href={url('/news')} linkLabel="All news" />
-      <Card class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-        <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary-soft text-primary">
-          <Icon name="newspaper" size={24} />
-        </span>
-        <div class="flex-1">
-          <h3 class="font-semibold text-fg">Headlines are on their way</h3>
-          <p class="mt-1 text-sm leading-relaxed text-muted">
-            Once the daily news pipeline is live, the top 3–5 stories from SEBI, RBI, MCA, courts and deal
-            news appear here every morning at 6:00 AM IST.
-          </p>
-        </div>
-      </Card>
+      {
+        headlines.length > 0 ? (
+          <ul class="grid gap-3">
+            {headlines.map((item) => (
+              <li class="min-w-0">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-start gap-4 rounded-2xl border border-border bg-surface p-4 shadow-card transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lift sm:items-center"
+                >
+                  <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary">
+                    <Icon name="newspaper" size={18} />
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block truncate font-medium text-fg">{item.headline}</span>
+                    <span class="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
+                      <span>{item.sourceName}</span>
+                      <span aria-hidden="true">·</span>
+                      <time datetime={item.publishedAt}>{dateFmt.format(new Date(item.publishedAt))}</time>
+                      <Tag color={categoryColor.get(item.category) ?? 8}>{item.category}</Tag>
+                    </span>
+                  </span>
+                  <Icon name="arrow-right" size={18} class="hidden shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-primary sm:block" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Card class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary-soft text-primary">
+              <Icon name="newspaper" size={24} />
+            </span>
+            <div class="flex-1">
+              <h3 class="font-semibold text-fg">Headlines are on their way</h3>
+              <p class="mt-1 text-sm leading-relaxed text-muted">
+                Once the daily news pipeline runs, the top stories from SEBI, RBI, courts and global regulators
+                appear here every morning at 6:00 AM IST.
+              </p>
+            </div>
+          </Card>
+        )
+      }
     </section>
 
     <!-- Quick navigation -->
