@@ -1,0 +1,39 @@
+---
+/** "Mark as read" toggle for a Learn topic, backed by localStorage. */
+import Icon from './Icon.astro';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+
+<button
+  type="button"
+  data-mark-read={slug}
+  class="inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-surface px-4 text-sm font-semibold text-fg shadow-card transition hover:-translate-y-0.5 hover:shadow-lift"
+>
+  <Icon name="check" size={18} data-mark-read-icon class="text-muted" />
+  <span data-mark-read-label>Mark as read</span>
+</button>
+
+<script>
+  import { isTopicRead, toggleTopicRead } from '../lib/progress';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-mark-read]').forEach((btn) => {
+    const slug = btn.dataset.markRead!;
+    const icon = btn.querySelector<SVGElement>('[data-mark-read-icon]')!;
+    const label = btn.querySelector<HTMLElement>('[data-mark-read-label]')!;
+
+    function render(read: boolean) {
+      btn.classList.toggle('!border-success', read);
+      btn.classList.toggle('!text-success', read);
+      icon.classList.toggle('text-success', read);
+      icon.classList.toggle('text-muted', !read);
+      label.textContent = read ? 'Read' : 'Mark as read';
+    }
+
+    render(isTopicRead(slug));
+    btn.addEventListener('click', () => render(toggleTopicRead(slug)));
+  });
+</script>

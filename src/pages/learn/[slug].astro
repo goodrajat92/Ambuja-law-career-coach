@@ -1,0 +1,152 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Icon from '../../components/Icon.astro';
+import MarkAsRead from '../../components/MarkAsRead.astro';
+import Tag from '../../components/Tag.astro';
+import { learnCategories } from '../../data/taxonomy';
+import { url } from '../../lib/links';
+
+export const getStaticPaths = (async () => {
+  const topics = await getCollection('learn');
+  return topics.map((topic) => ({ params: { slug: topic.id }, props: { topic } }));
+}) satisfies GetStaticPaths;
+
+const { topic } = Astro.props;
+const { Content } = await render(topic);
+const category = learnCategories.find((c) => c.slug === topic.data.category);
+
+const relatedEntries = (
+  await Promise.all(topic.data.related.map((slug) => getEntry('learn', slug)))
+).filter((t) => t !== undefined);
+
+const lastReviewedFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }).format(topic.data.lastReviewed);
+---
+
+<BaseLayout title={topic.data.title} description={topic.data.summary}>
+  <Container size="narrow" class="animate-rise pb-16 pt-10 sm:pt-14">
+    <a href={url('/learn')} class="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-muted hover:text-fg">
+      <Icon name="arrow-right" size={16} class="rotate-180" />
+      Back to Learn
+    </a>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2">
+      {category && <Tag color={category.color}>{category.label}</Tag>}
+      <span class="inline-flex items-center gap-1 text-xs font-semibold capitalize text-muted">
+        <Icon name="target" size={12} strokeWidth={2.2} />
+        {topic.data.level}
+      </span>
+    </div>
+
+    <h1 class="mt-3 text-3xl font-semibold leading-tight text-fg sm:text-4xl">{topic.data.title}</h1>
+    <p class="mt-3 text-lg leading-relaxed text-muted">{topic.data.summary}</p>
+
+    <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+      <span class="flex items-center gap-1.5">
+        <Icon name="clock" size={15} />
+        {topic.data.readingTime} min read
+      </span>
+      <span class="flex items-center gap-1.5">
+        <Icon name="calendar" size={15} />
+        Last reviewed {lastReviewedFmt}
+      </span>
+    </div>
+
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <MarkAsRead slug={topic.id} />
+      <div class="flex flex-wrap gap-1.5">
+        {topic.data.tags.map((t) => <Tag color={8}>{t}</Tag>)}
+      </div>
+    </div>
+
+    <div role="note" class="mt-8 flex items-start gap-3 rounded-2xl border border-accent/30 bg-accent-soft p-4 text-sm text-fg">
+      <Icon name="scale" size={18} class="mt-0.5 shrink-0 text-accent" />
+      <p>
+        <strong class="font-semibold">Educational only, not legal advice.</strong>
+        <span class="text-muted"> Laws and regulations change — always verify the current position before relying on this in a live matter.</span>
+      </p>
+    </div>
+
+    {
+      topic.data.keyTakeaways.length > 0 && (
+        <div class="mt-8 rounded-2xl border border-primary/20 bg-primary-soft p-5 sm:p-6">
+          <h2 class="flex items-center gap-2 font-semibold text-fg">
+            <Icon name="sparkles" size={18} class="text-primary" />
+            Key takeaways
+          </h2>
+          <ul class="mt-3 grid gap-2">
+            {topic.data.keyTakeaways.map((k) => (
+              <li class="flex gap-2.5 text-sm leading-relaxed text-fg">
+                <Icon name="check" size={16} class="mt-0.5 shrink-0 text-primary" />
+                <span>{k}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    <div class="prose prose-neutral mt-10 max-w-none">
+      <Content />
+    </div>
+
+    {
+      topic.data.sources.length > 0 && (
+        <div class="mt-10 rounded-2xl border border-border bg-surface-2 p-5">
+          <h2 class="flex items-center gap-2 text-sm font-semibold text-fg">
+            <Icon name="book" size={16} />
+            Sources
+          </h2>
+          <ul class="mt-3 grid gap-1.5 text-sm">
+            {topic.data.sources.map((s) => (
+              <li>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">
+                  {s.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    {
+      relatedEntries.length > 0 && (
+        <div class="mt-10">
+          <h2 class="text-lg font-semibold text-fg">Related topics</h2>
+          <ul class="mt-3 grid gap-3 sm:grid-cols-2">
+            {relatedEntries.map((r) => (
+              <li>
+                <a href={url(`/learn/${r!.id}`)} class="group block rounded-xl border border-border bg-surface p-4 shadow-card transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lift">
+                  <span class="flex items-center justify-between gap-2 font-medium text-fg">
+                    {r!.data.title}
+                    <Icon name="arrow-right" size={16} class="shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </Container>
+
+  <div
+    data-remember-topic
+    data-title={topic.data.title}
+    data-href={url(`/learn/${topic.id}`)}
+    data-category={category?.label}
+    class="hidden"
+  />
+</BaseLayout>
+
+<script>
+  // Remember this as the "continue learning" topic on Home.
+  import { KEYS, writeJSON } from '../../lib/storage';
+  const el = document.querySelector<HTMLElement>('[data-remember-topic]');
+  if (el) {
+    writeJSON(KEYS.lastLearn, { title: el.dataset.title, href: el.dataset.href, category: el.dataset.category || undefined });
+  }
+</script>

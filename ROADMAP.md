@@ -25,7 +25,15 @@ Update this file whenever a feature is finished.
   - [x] Top headlines wired into Home
   - [ ] LiveLaw (feed currently 500s), MCA (403s), IFSCA and MAS (no working feed found) — revisit sources
   - [ ] Wire `ai-enrich.mjs` in once Phase 2's optional AI step is written (original 1–2 sentence summaries instead of the feed's own teaser text)
-- [ ] **Phase 3 — Learn:** content collection schema, listing + topic pages, ~10 seed topics
+- [x] **Phase 3 — Learn** (mostly done)
+  - [x] Content collection schema (`src/content.config.ts`, Zod, Astro Content Layer API)
+  - [x] Listing page with client-side filters (category, level, tag, search) — `LearnExplorer.astro`
+  - [x] Topic page: key-takeaways box, disclaimer, sources, related topics, reading time, last-reviewed date
+  - [x] "Mark as read" wired to the same progress object the streak widget reads (`src/lib/progress.ts`)
+  - [x] "Continue learning" on Home now points at the last real topic opened
+  - [x] 8 topics seeded, each citing primary sources verified before writing (Companies Act, SEBI ICDR, FEMA NDI Rules, Indian Contract Act, IBC) — see each topic's own "TODO: verify" notes for anything time-sensitive
+  - [ ] 2 more topics to reach the ~10 target (e.g. competition law deal-value threshold, GIFT City/IFSC)
+  - [ ] Pagefind search across topics (Phase 7)
 - [ ] **Phase 4 — Practice:** exercise template (editor, timer, rubric, hidden model answer), 2–3 exercises per sub-tab
 - [ ] **Phase 5 — Notes:** IndexedDB storage interface, CRUD, tags, search, export/import
 - [ ] **Phase 6 — Think Ahead:** trend briefs, career paths, skills roadmap, reading list, reflections
