@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Card from '../../components/Card.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Tag from '../../components/Tag.astro';
+import { navItem } from '../../data/nav';
+import { newsCategories, newsRegions } from '../../data/taxonomy';
+
+const page = navItem('/news');
+---
+
+<BaseLayout title={page.label} description={page.description}>
+  <PageHeader eyebrow="Daily briefing" icon={page.icon} title="Legal news, filtered for deal lawyers" description={page.description} />
+
+  <Container>
+    <div class="grid gap-5 lg:grid-cols-2">
+      <Card>
+        <h2 class="flex items-center gap-2 text-lg font-semibold text-fg">
+          <Icon name="globe" size={20} class="text-primary" /> Regions
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {newsRegions.map((r) => <li class="rounded-full border border-border bg-surface-2 px-3 py-1 text-sm text-fg">{r}</li>)}
+        </ul>
+      </Card>
+      <Card>
+        <h2 class="flex items-center gap-2 text-lg font-semibold text-fg">
+          <Icon name="layers" size={20} class="text-primary" /> Categories
+        </h2>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {newsCategories.map((c) => <li><Tag color={c.color}>{c.label}</Tag></li>)}
+        </ul>
+      </Card>
+    </div>
+
+    <section class="mt-12">
+      <ComingSoon
+        phase={2}
+        items={[
+          'Fresh headlines every morning at 6:00 AM IST',
+          'Filter by region, category, date range and source',
+          'Keyword search across the archive',
+          'A short original summary and a link to the source for every item',
+          'About 90 days of archive',
+          '"Save to notes" on any story',
+        ]}
+      />
+    </section>
+  </Container>
+</BaseLayout>

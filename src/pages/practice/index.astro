@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Card from '../../components/Card.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SubTabs from '../../components/SubTabs.astro';
+import { navItem } from '../../data/nav';
+import { url } from '../../lib/links';
+
+const page = navItem('/practice');
+---
+
+<BaseLayout title={page.label} description={page.description}>
+  <PageHeader eyebrow="Skill building" icon={page.icon} title="Practice like it's a live deal" description={page.description} />
+  <SubTabs parent={page} />
+
+  <Container class="mt-8">
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        (page.children ?? []).map((c) => (
+          <li>
+            <Card href={url(`${page.href}/${c.slug}`)} class="flex h-full flex-col">
+              <h2 class="text-lg font-semibold text-fg">{c.label}</h2>
+              <p class="mt-1.5 flex-1 text-sm leading-relaxed text-muted">{c.description}</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                Open
+                <Icon name="arrow-right" size={16} class="transition-transform group-hover:translate-x-1" />
+              </span>
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+
+    <section class="mt-12">
+      <ComingSoon
+        phase={4}
+        title="How each exercise will work"
+        items={[
+          'A brief or scenario, then clear instructions',
+          'A writing area that autosaves on this device',
+          'An optional timer',
+          'A self-assessment rubric checklist',
+          'A model answer, hidden until you reveal it',
+          'Your self-score saved to your progress',
+        ]}
+      />
+    </section>
+  </Container>
+</BaseLayout>

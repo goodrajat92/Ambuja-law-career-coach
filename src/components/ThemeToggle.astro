@@ -1,0 +1,54 @@
+---
+/**
+ * Light / dark switch. The initial theme is set before paint by the inline
+ * script in BaseLayout; this button only flips it and remembers the choice.
+ * Until the user picks one, the site follows the OS setting (and keeps
+ * following it live if the OS switches).
+ */
+import Icon from './Icon.astro';
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-fg shadow-card transition hover:-translate-y-0.5 hover:text-primary active:translate-y-0"
+  aria-label="Switch to dark theme"
+>
+  <!-- Moon shows in light mode, sun in dark mode (pure CSS, no flash) -->
+  <Icon name="moon" class="dark:hidden" />
+  <Icon name="sun" class="hidden dark:block" />
+</button>
+
+<script>
+  import { KEYS, readJSON, writeJSON } from '../lib/storage';
+
+  type Theme = 'light' | 'dark';
+  const root = document.documentElement;
+
+  function apply(theme: Theme) {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    // Keep the browser UI (mobile address bar) in sync with the page
+    const bg = getComputedStyle(root).getPropertyValue('--bg').trim();
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg);
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((btn) => {
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    });
+  }
+
+  apply((root.dataset.theme as Theme) ?? 'light');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next: Theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      writeJSON(KEYS.theme, next);
+      apply(next);
+    });
+  });
+
+  // Follow OS changes only while the user hasn't chosen a theme
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (readJSON<Theme | null>(KEYS.theme, null)) return;
+    apply(e.matches ? 'dark' : 'light');
+  });
+</script>

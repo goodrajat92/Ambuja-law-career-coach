@@ -1,0 +1,44 @@
+---
+/**
+ * One page per Practice sub-tab, generated from the `children` of the
+ * Practice entry in nav.ts. Add a sub-tab there and its page appears here.
+ */
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SubTabs from '../../components/SubTabs.astro';
+import { navItem, type NavChild } from '../../data/nav';
+
+export const getStaticPaths = (() => {
+  return (navItem('/practice').children ?? []).map((child) => ({
+    params: { subTab: child.slug },
+    props: { child },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  child: NavChild;
+}
+const { child } = Astro.props;
+const page = navItem('/practice');
+---
+
+<BaseLayout title={`${child.label} · ${page.label}`} description={child.description}>
+  <PageHeader eyebrow={page.label} icon={page.icon} title={child.label} description={child.description} />
+  <SubTabs parent={page} />
+
+  <Container class="mt-8">
+    <ComingSoon
+      phase={4}
+      title="Exercises are being written"
+      items={[
+        '2–3 starter exercises for this area',
+        'Easy, medium and hard difficulty levels',
+        'Estimated time and the skills each one builds',
+        'Links back to the related Learn topics',
+      ]}
+    />
+  </Container>
+</BaseLayout>

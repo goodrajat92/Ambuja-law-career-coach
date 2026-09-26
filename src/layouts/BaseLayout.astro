@@ -1,0 +1,90 @@
+---
+/**
+ * The shell every page uses: <head>, theme bootstrapping, header, main,
+ * footer and the mobile bottom bar.
+ */
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileNav from '../components/MobileNav.astro';
+import { site } from '../data/site';
+import { url } from '../lib/links';
+
+interface Props {
+  /** Page title; the site name is appended automatically */
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.description } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!--
+      Set the theme BEFORE first paint so there is no flash of the wrong
+      theme. A saved choice wins; otherwise follow the OS. Kept inline and
+      tiny on purpose. The key matches KEYS.theme in src/lib/storage.ts.
+    -->
+    <script is:inline>
+      (function () {
+        var theme;
+        try {
+          theme = JSON.parse(localStorage.getItem('cc:theme') || 'null');
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        var root = document.documentElement;
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        if (theme === 'dark') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0a0e1c');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-dvh">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-fg"
+    >
+      Skip to content
+    </a>
+
+    <div class="page-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[36rem]" aria-hidden="true"></div>
+
+    <Header />
+
+    <main id="main" class="pb-10">
+      <slot />
+    </main>
+
+    <Footer />
+    <!-- Room for the fixed bottom bar on mobile -->
+    <div class="h-20 md:hidden" aria-hidden="true"></div>
+    <MobileNav />
+
+    <script>
+      // Count today as an active day for the streak widget
+      import { recordVisit } from '../lib/activity';
+      recordVisit();
+    </script>
+  </body>
+</html>

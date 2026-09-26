@@ -1,0 +1,41 @@
+---
+/**
+ * Bottom tab bar for phones and small tablets (hidden from md up).
+ * Built from nav.ts, so new tabs appear here automatically. Each tab is at
+ * least 56px tall, above the 44px minimum tap target.
+ */
+import Icon from './Icon.astro';
+import { nav } from '../data/nav';
+import { isActive, url } from '../lib/links';
+
+const pathname = Astro.url.pathname;
+---
+
+<nav
+  aria-label="Main"
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-surface/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden"
+>
+  <ul class="mx-auto grid max-w-xl" style={`grid-template-columns: repeat(${nav.length}, minmax(0, 1fr));`}>
+    {
+      nav.map((item) => {
+        const active = isActive(pathname, item.href);
+        return (
+          <li>
+            <a
+              href={url(item.href)}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'relative flex min-h-14 flex-col items-center justify-center gap-1 px-1 text-[11px] font-medium transition-colors',
+                active ? 'text-primary' : 'text-muted hover:text-fg',
+              ]}
+            >
+              {active && <span class="absolute inset-x-4 top-0 h-0.5 rounded-full bg-primary" />}
+              <Icon name={item.icon} size={22} strokeWidth={active ? 2.1 : 1.75} />
+              <span class="truncate">{item.shortLabel ?? item.label}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

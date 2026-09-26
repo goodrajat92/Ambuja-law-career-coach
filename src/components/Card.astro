@@ -1,0 +1,31 @@
+---
+/**
+ * The base surface for most content. Pass `href` to make the whole card a
+ * link (with a hover lift); otherwise it renders as a plain <div>.
+ */
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'div'> {
+  href?: string;
+  class?: string;
+  /** Remove the default padding (for cards with edge-to-edge content) */
+  flush?: boolean;
+}
+
+const { href, class: className, flush = false, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href}
+  class:list={[
+    'block rounded-2xl border border-border bg-surface shadow-card',
+    !flush && 'p-5 sm:p-6',
+    href &&
+      'group transition duration-200 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lift focus-visible:-translate-y-0.5',
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Tag>

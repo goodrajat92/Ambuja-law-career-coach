@@ -1,0 +1,65 @@
+﻿---
+/**
+ * Quote of the Day.
+ *
+ * The page is built once a day, so the build-time quote is rendered as
+ * HTML (works without JavaScript). A tiny script then re-picks using the
+ * visitor's current date in IST, so the quote still changes at midnight
+ * even if the day's build hasn't run yet.
+ */
+import Icon from './Icon.astro';
+import { quoteOfTheDay } from '../lib/quotes';
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+const q = quoteOfTheDay();
+---
+
+<figure
+  data-quote-card
+  class:list={[
+    'relative isolate flex flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-feature-from to-feature-to p-7 text-feature-fg shadow-lift sm:p-10',
+    className,
+  ]}
+>
+  <!-- Decorative light + oversized quote mark -->
+  <div class="absolute -right-24 -top-24 -z-10 size-72 rounded-full bg-accent-solid/20 blur-3xl" aria-hidden="true"></div>
+  <div class="absolute -bottom-28 -left-16 -z-10 size-72 rounded-full bg-feature-fg/10 blur-3xl" aria-hidden="true"></div>
+  <span class="pointer-events-none absolute -top-6 right-6 -z-10 select-none font-serif text-[11rem] leading-none text-feature-fg/[0.07] sm:text-[14rem]" aria-hidden="true">&ldquo;</span>
+
+  <p class="inline-flex w-fit items-center gap-2 rounded-full bg-feature-fg/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-accent-solid ring-1 ring-feature-fg/15">
+    <Icon name="quote" size={14} strokeWidth={2} />
+    Quote of the day
+  </p>
+
+  <blockquote class="mt-6">
+    <p data-quote-text class="font-serif text-2xl leading-snug font-medium text-balance sm:text-3xl lg:text-[2.1rem]">
+      {q.text}
+    </p>
+  </blockquote>
+
+  <figcaption class="mt-8 flex items-center gap-3">
+    <span class="h-px w-8 bg-accent-solid" aria-hidden="true"></span>
+    <span>
+      <span data-quote-author class="block font-semibold">{q.author}</span>
+      <span data-quote-context class:list={['block text-sm text-feature-muted', !q.context && 'hidden']}>{q.context}</span>
+    </span>
+  </figcaption>
+</figure>
+
+<script>
+  import { quoteOfTheDay } from '../lib/quotes';
+
+  const q = quoteOfTheDay();
+  document.querySelectorAll<HTMLElement>('[data-quote-card]').forEach((card) => {
+    const text = card.querySelector<HTMLElement>('[data-quote-text]');
+    if (!text || text.textContent?.trim() === q.text) return; // already today's
+    text.textContent = q.text;
+    card.querySelector<HTMLElement>('[data-quote-author]')!.textContent = q.author;
+    const ctx = card.querySelector<HTMLElement>('[data-quote-context]')!;
+    ctx.textContent = q.context ?? '';
+    ctx.classList.toggle('hidden', !q.context);
+  });
+</script>

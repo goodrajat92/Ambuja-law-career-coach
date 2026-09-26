@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { navItem } from '../../data/nav';
+
+const page = navItem('/notes');
+---
+
+<BaseLayout title={page.label} description={page.description}>
+  <PageHeader eyebrow="Private notebook" icon={page.icon} title="Your thinking, kept close" description={page.description} />
+
+  <Container>
+    <div
+      role="note"
+      class="flex items-start gap-3 rounded-2xl border border-accent/30 bg-accent-soft p-4 text-fg sm:items-center sm:p-5"
+    >
+      <Icon name="lock" size={20} class="mt-0.5 shrink-0 text-accent sm:mt-0" />
+      <p>
+        <strong class="font-semibold">Notes are stored on this device only.</strong>
+        <span class="text-muted"> Nothing is uploaded. Use export regularly to keep a backup.</span>
+      </p>
+    </div>
+
+    <section class="mt-8">
+      <ComingSoon
+        phase={5}
+        items={[
+          'Create, edit and delete notes, with Markdown',
+          'Titles, tags and timestamps',
+          'Search and filter by tag',
+          '"Save to notes" from news, Learn topics and practice answers',
+          'Export and import as JSON, so browser data is never lost',
+          'Designed to allow optional cloud sync later',
+        ]}
+      />
+    </section>
+  </Container>
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+/** Title block at the top of each section page. */
+import Container from './Container.astro';
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icons';
+
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  icon?: IconName;
+}
+const { title, description, eyebrow, icon } = Astro.props;
+---
+
+<section class="animate-rise pb-8 pt-10 sm:pb-10 sm:pt-16">
+  <Container>
+    {
+      eyebrow && (
+        <p class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+          {icon && <Icon name={icon} size={14} strokeWidth={2} />}
+          {eyebrow}
+        </p>
+      )
+    }
+    <h1 class="mt-4 text-4xl font-semibold leading-[1.1] text-balance text-fg sm:text-5xl">{title}</h1>
+    {description && <p class="mt-4 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{description}</p>}
+    <slot />
+  </Container>
+</section>

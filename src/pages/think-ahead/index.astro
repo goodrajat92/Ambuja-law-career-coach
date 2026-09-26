@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Card from '../../components/Card.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { navItem } from '../../data/nav';
+import { thinkAheadSections } from '../../data/taxonomy';
+
+const page = navItem('/think-ahead');
+---
+
+<BaseLayout title={page.label} description={page.description}>
+  <PageHeader eyebrow="Foresight" icon={page.icon} title="See where the practice is heading" description={page.description} />
+
+  <Container>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        thinkAheadSections.map((s) => (
+          <li>
+            <Card class="h-full">
+              <span class="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent">
+                <Icon name={s.icon} size={22} />
+              </span>
+              <h2 class="mt-4 text-lg font-semibold text-fg">{s.title}</h2>
+              <p class="mt-1.5 text-sm leading-relaxed text-muted">{s.description}</p>
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+
+    <section class="mt-12">
+      <ComingSoon
+        phase={6}
+        items={[
+          'Trend briefs, written and reviewed with sources',
+          'Career path guides with the skills each one needs',
+          'A skills roadmap linked into Learn and Practice',
+          'Weekly reflection prompts that save to Notes',
+        ]}
+      />
+    </section>
+  </Container>
+</BaseLayout>

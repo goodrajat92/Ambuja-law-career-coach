@@ -1,0 +1,19 @@
+---
+/** Centred page-width wrapper with the site's standard side gutters. */
+interface Props {
+  class?: string;
+  /** 'wide' for dashboards and grids, 'narrow' for reading pages */
+  size?: 'wide' | 'narrow';
+}
+const { class: className, size = 'wide' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'mx-auto w-full px-4 sm:px-6 lg:px-8',
+    size === 'wide' ? 'max-w-6xl' : 'max-w-3xl',
+    className,
+  ]}
+>
+  <slot />
+</div>

@@ -1,0 +1,50 @@
+---
+/**
+ * Sub-tab bar for a section with `children` in nav.ts (e.g. Practice).
+ * Scrolls horizontally inside its own box on small screens, so the page
+ * body never scrolls sideways.
+ */
+import Container from './Container.astro';
+import type { NavItem } from '../data/nav';
+import { isActive, stripBase, url } from '../lib/links';
+
+interface Props {
+  parent: NavItem;
+}
+const { parent } = Astro.props;
+const pathname = Astro.url.pathname;
+const onOverview = stripBase(pathname) === parent.href;
+
+const tabs = [
+  { label: 'Overview', href: parent.href, active: onOverview },
+  ...(parent.children ?? []).map((c) => {
+    const href = `${parent.href}/${c.slug}`;
+    return { label: c.label, href, active: isActive(pathname, href) };
+  }),
+];
+---
+
+<Container>
+  <nav aria-label={`${parent.label} sections`} class="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
+    <ul class="flex w-max gap-2 border-b border-border pb-3">
+      {
+        tabs.map((t) => (
+          <li>
+            <a
+              href={url(t.href)}
+              aria-current={t.active ? 'page' : undefined}
+              class:list={[
+                'inline-flex min-h-11 items-center whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors',
+                t.active
+                  ? 'border-primary bg-primary text-primary-fg'
+                  : 'border-border bg-surface text-muted hover:border-primary/40 hover:text-fg',
+              ]}
+            >
+              {t.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</Container>

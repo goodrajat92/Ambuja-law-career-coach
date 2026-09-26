@@ -1,0 +1,26 @@
+---
+/** Quick-navigation card for a top-level tab (driven by nav.ts). */
+import Card from './Card.astro';
+import Icon from './Icon.astro';
+import type { NavItem } from '../data/nav';
+import { url } from '../lib/links';
+
+interface Props {
+  item: NavItem;
+}
+const { item } = Astro.props;
+---
+
+<Card href={url(item.href)} class="flex h-full flex-col">
+  <span
+    class="grid size-11 place-items-center rounded-xl bg-primary-soft text-primary transition group-hover:bg-primary group-hover:text-primary-fg"
+  >
+    <Icon name={item.icon} size={22} />
+  </span>
+  <h3 class="mt-5 text-lg font-semibold text-fg">{item.label}</h3>
+  <p class="mt-1.5 flex-1 text-sm leading-relaxed text-muted">{item.description}</p>
+  <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+    Open
+    <Icon name="arrow-right" size={16} class="transition-transform group-hover:translate-x-1" />
+  </span>
+</Card>

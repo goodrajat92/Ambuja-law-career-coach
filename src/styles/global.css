@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Global styles + design tokens
+   --------------------------------------------------------------------------
+   All colors live here as CSS variables. Components use them through the
+   Tailwind utilities generated in the @theme block below (bg-surface,
+   text-muted, border-border, text-primary, bg-accent-soft ...).
+   Never hardcode a color inside a component.
+   ========================================================================== */
+
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/fraunces';
+
+@plugin '@tailwindcss/typography';
+
+/* `dark:` utilities follow the data-theme attribute set by the theme script,
+   not the OS setting directly (the script already takes the OS into account). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------- Light theme (default) ---------- */
+:root {
+  --bg: #f7f6f2; /* warm paper */
+  --surface: #ffffff;
+  --surface-2: #f0eee8;
+  --text: #141a33; /* deep navy ink */
+  --muted: #555d73;
+  --border: #e3e0d8;
+
+  --primary: #34409c; /* indigo / navy: trust */
+  --primary-strong: #252f7a;
+  --primary-fg: #ffffff; /* text on a primary background */
+  --primary-soft: #e8eafa;
+
+  --accent: #a4520a; /* amber, dark enough for text on light surfaces */
+  --accent-solid: #f5a524; /* amber fill for badges, streak flames */
+  --accent-fg: #221400; /* text on an accent-solid background */
+  --accent-soft: #fdf1dc;
+
+  --success: #1f7a4d;
+
+  /* Category colors (news + learn tags). Used as text; backgrounds are
+     tinted versions via color-mix in the Tag component. */
+  --cat-1: #3b4bc8; /* indigo */
+  --cat-2: #7c3aed; /* violet */
+  --cat-3: #0f766e; /* teal */
+  --cat-4: #be123c; /* rose */
+  --cat-5: #a4520a; /* amber */
+  --cat-6: #15803d; /* green */
+  --cat-7: #0369a1; /* sky */
+  --cat-8: #52525b; /* slate */
+
+  /* "Feature" surfaces: the deep navy hero cards (quote of the day) */
+  --feature-from: #1c2566;
+  --feature-to: #34409c;
+  --feature-fg: #ffffff;
+  --feature-muted: #c9cef0;
+
+  --glow-1: rgb(52 64 156 / 0.14);
+  --glow-2: rgb(245 165 36 / 0.14);
+
+  --shadow-card: 0 1px 2px rgb(20 26 51 / 0.04), 0 4px 16px -4px rgb(20 26 51 / 0.08);
+  --shadow-lift: 0 2px 4px rgb(20 26 51 / 0.05), 0 16px 40px -12px rgb(20 26 51 / 0.18);
+
+  color-scheme: light;
+}
+
+/* ---------- Dark theme ---------- */
+:root[data-theme='dark'] {
+  --bg: #0a0e1c;
+  --surface: #11172a;
+  --surface-2: #182038;
+  --text: #e9ebf5;
+  --muted: #a0a8bf;
+  --border: #243052;
+
+  --primary: #9aa8ff;
+  --primary-strong: #b9c3ff;
+  --primary-fg: #0a0e1c;
+  --primary-soft: #1b2350;
+
+  --accent: #fbbf24;
+  --accent-solid: #fbbf24;
+  --accent-fg: #1a1000;
+  --accent-soft: #2a2110;
+
+  --success: #4ade80;
+
+  --cat-1: #a5b4fc;
+  --cat-2: #c4b5fd;
+  --cat-3: #5eead4;
+  --cat-4: #fda4af;
+  --cat-5: #fcd34d;
+  --cat-6: #86efac;
+  --cat-7: #7dd3fc;
+  --cat-8: #d4d4d8;
+
+  --feature-from: #161d45;
+  --feature-to: #242f6e;
+  --feature-fg: #eef0fb;
+  --feature-muted: #b3bbe3;
+
+  --glow-1: rgb(99 115 255 / 0.18);
+  --glow-2: rgb(251 191 36 / 0.08);
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px -4px rgb(0 0 0 / 0.4);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.3), 0 16px 40px -12px rgb(0 0 0 / 0.6);
+
+  color-scheme: dark;
+}
+
+/* Map the variables to Tailwind utilities. `inline` makes Tailwind emit
+   var(--x) directly, so utilities switch automatically with the theme. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-feature-from: var(--feature-from);
+  --color-feature-to: var(--feature-to);
+  --color-feature-fg: var(--feature-fg);
+  --color-feature-muted: var(--feature-muted);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-lift: var(--shadow-lift);
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01'; /* Inter: nicer 'a' and single-storey 'l' */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* no horizontal page scroll; wide tables scroll in their own box */
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+    font-optical-sizing: auto;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent-solid) 35%, transparent);
+  }
+
+  /* Visible focus ring for keyboard users everywhere */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* Soft ambient glow behind the top of every page */
+.page-glow {
+  background:
+    radial-gradient(60rem 30rem at 10% -10%, var(--glow-1), transparent 60%),
+    radial-gradient(50rem 26rem at 95% -5%, var(--glow-2), transparent 60%);
+}
+
+/* Long-form reading: map the typography plugin to our tokens */
+.prose {
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--text);
+  --tw-prose-lead: var(--muted);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--text);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--border);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--text);
+  --tw-prose-quote-borders: var(--accent-solid);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--text);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  max-width: 70ch;
+}
+
+/* Entrance animation, used sparingly on page sections */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

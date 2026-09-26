@@ -1,0 +1,48 @@
+---
+/**
+ * Sticky top bar. Desktop (md+) shows every tab from nav.ts; on mobile the
+ * tabs move to the bottom bar (MobileNav) and this bar keeps the logo and
+ * theme toggle.
+ */
+import Container from './Container.astro';
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { nav } from '../data/nav';
+import { isActive, url } from '../lib/links';
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-border/70 bg-bg/80 backdrop-blur-xl supports-[backdrop-filter]:bg-bg/65">
+  <Container class="flex h-16 items-center justify-between gap-4">
+    <Logo />
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          nav.map((item) => {
+            const active = isActive(pathname, item.href);
+            return (
+              <li>
+                <a
+                  href={url(item.href)}
+                  aria-current={active ? 'page' : undefined}
+                  class:list={[
+                    'inline-flex min-h-11 items-center rounded-full px-3.5 text-sm font-medium transition-colors lg:px-4',
+                    active
+                      ? 'bg-primary-soft text-primary'
+                      : 'text-muted hover:bg-surface-2 hover:text-fg',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <ThemeToggle />
+  </Container>
+</header>

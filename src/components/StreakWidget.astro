@@ -1,0 +1,94 @@
+---
+/**
+ * Streak + progress widget. Data lives in localStorage (src/lib/activity.ts),
+ * so the HTML renders neutral values and a script fills in the real ones.
+ */
+import Card from './Card.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+
+const stats = [
+  { key: 'daysActive', label: 'Days active' },
+  { key: 'bestStreak', label: 'Best streak' },
+  { key: 'exercisesDone', label: 'Exercises done' },
+  { key: 'topicsRead', label: 'Topics read' },
+];
+---
+
+<Card class:list={['flex flex-col', className]} data-streak-widget>
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <p class="text-sm font-medium text-muted">Current streak</p>
+      <p class="mt-1 flex items-baseline gap-2">
+        <span data-stat="currentStreak" class="font-serif text-5xl font-semibold tabular-nums text-fg">0</span>
+        <span data-streak-unit class="text-muted">days</span>
+      </p>
+    </div>
+    <span class="grid size-12 place-items-center rounded-2xl bg-accent-soft text-accent">
+      <Icon name="flame" size={26} strokeWidth={1.9} />
+    </span>
+  </div>
+
+  <!-- Last 7 days -->
+  <ol class="mt-6 grid grid-cols-7 gap-1.5" aria-label="Activity over the last 7 days" data-week></ol>
+
+  <dl class="mt-6 grid grid-cols-2 gap-3 border-t border-border pt-5">
+    {
+      stats.map((s) => (
+        <div class="rounded-xl bg-surface-2 px-3 py-2.5">
+          <dt class="text-xs text-muted">{s.label}</dt>
+          <dd data-stat={s.key} class="mt-0.5 text-lg font-semibold tabular-nums text-fg">
+            0
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p data-streak-message class="mt-4 text-sm text-muted">Show up daily to build your streak.</p>
+</Card>
+
+<script>
+  import { getActivitySummary, recordVisit } from '../lib/activity';
+
+  // Make sure today is counted before we read the summary
+  recordVisit();
+  const s = getActivitySummary();
+  const dayFmt = new Intl.DateTimeFormat('en-IN', { weekday: 'narrow', timeZone: 'UTC' });
+  const longFmt = new Intl.DateTimeFormat('en-IN', { weekday: 'long', day: 'numeric', month: 'short', timeZone: 'UTC' });
+
+  document.querySelectorAll<HTMLElement>('[data-streak-widget]').forEach((w) => {
+    for (const [key, value] of Object.entries(s)) {
+      if (typeof value !== 'number') continue;
+      w.querySelectorAll(`[data-stat="${key}"]`).forEach((el) => (el.textContent = String(value)));
+    }
+    w.querySelector('[data-streak-unit]')!.textContent = s.currentStreak === 1 ? 'day' : 'days';
+
+    const week = w.querySelector('[data-week]')!;
+    week.innerHTML = '';
+    s.lastWeek.forEach((d, i) => {
+      const date = new Date(`${d.date}T00:00:00Z`);
+      const li = document.createElement('li');
+      li.className = 'flex flex-col items-center gap-1.5';
+      li.innerHTML = `
+        <span class="grid size-8 place-items-center rounded-full text-xs font-semibold ${
+          d.active ? 'bg-accent-solid text-accent-fg' : 'border border-dashed border-border text-muted'
+        } ${i === 6 ? 'ring-2 ring-primary/40 ring-offset-2 ring-offset-surface' : ''}">${d.active ? '✓' : ''}</span>
+        <span class="text-[11px] text-muted" aria-hidden="true">${dayFmt.format(date)}</span>
+        <span class="sr-only">${longFmt.format(date)}: ${d.active ? 'active' : 'not active'}</span>`;
+      week.appendChild(li);
+    });
+
+    const msg = w.querySelector('[data-streak-message]')!;
+    msg.textContent =
+      s.currentStreak >= 7
+        ? 'A full week or more. Superb consistency!'
+        : s.currentStreak >= 2
+          ? 'Nice momentum. Come back tomorrow to keep it going.'
+          : 'Great start. Come back tomorrow to build a streak.';
+  });
+</script>

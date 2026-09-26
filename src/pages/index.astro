@@ -1,0 +1,129 @@
+---
+/**
+ * Home: the daily dashboard.
+ * Quote of the day, streak/progress, today's practice focus, continue
+ * learning, top legal news and quick navigation to every tab.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+import NavCard from '../components/NavCard.astro';
+import QuoteCard from '../components/QuoteCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import StreakWidget from '../components/StreakWidget.astro';
+import { nav, navItem } from '../data/nav';
+import { site } from '../data/site';
+import { pickForDate } from '../lib/daily';
+import { formatLongDate } from '../lib/dates';
+import { url } from '../lib/links';
+
+// Until the exercise pool exists (Phase 4), rotate a daily practice focus
+// through the Practice sub-tabs.
+const practice = navItem('/practice');
+const focus = pickForDate(practice.children ?? [])!;
+const quickLinks = nav.filter((n) => n.href !== '/');
+---
+
+<BaseLayout>
+  <Container class="pt-8 sm:pt-12">
+    <!-- Greeting -->
+    <section class="animate-rise">
+      <p class="flex items-center gap-2 text-sm font-medium text-muted">
+        <Icon name="calendar" size={16} />
+        <time data-today>{formatLongDate()}</time>
+      </p>
+      <h1 class="mt-3 text-4xl font-semibold leading-[1.1] text-balance text-fg sm:text-5xl">
+        <span data-greeting>Welcome back</span>.
+        <span class="text-muted">Let's make today count.</span>
+      </h1>
+    </section>
+
+    <!-- Quote + streak -->
+    <section class="animate-rise mt-8 grid gap-5 [animation-delay:80ms] lg:grid-cols-3" aria-label="Today">
+      <QuoteCard class="lg:col-span-2" />
+      <StreakWidget />
+    </section>
+
+    <!-- Practice focus + continue learning -->
+    <section class="animate-rise mt-5 grid gap-5 [animation-delay:160ms] md:grid-cols-2" aria-label="Your next steps">
+      <Card href={url(`${practice.href}/${focus.slug}`)} class="relative overflow-hidden">
+        <div class="flex items-center justify-between gap-3">
+          <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+            <Icon name="target" size={15} strokeWidth={2} />
+            Today's practice focus
+          </p>
+          <Icon name="arrow-right" size={18} class="text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
+        </div>
+        <h2 class="mt-4 text-2xl font-semibold text-fg">{focus.label}</h2>
+        <p class="mt-2 leading-relaxed text-muted">{focus.description}</p>
+        <p class="mt-5 inline-flex items-center gap-2 rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-muted">
+          <Icon name="clock" size={14} />
+          Changes every day at midnight IST
+        </p>
+      </Card>
+
+      <Card href={url('/learn')} data-continue-learning>
+        <div class="flex items-center justify-between gap-3">
+          <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+            <Icon name="book" size={15} strokeWidth={2} />
+            <span data-cl-eyebrow>Start learning</span>
+          </p>
+          <Icon name="arrow-right" size={18} class="text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
+        </div>
+        <h2 data-cl-title class="mt-4 text-2xl font-semibold text-fg">Explore the Learn library</h2>
+        <p data-cl-desc class="mt-2 leading-relaxed text-muted">
+          Company law, SEBI regulations, FEMA and FDI, VC deal terms and more, organised by topic and level.
+        </p>
+      </Card>
+    </section>
+
+    <!-- Top legal news -->
+    <section class="mt-14" aria-labelledby="news-heading">
+      <SectionHeading id="news-heading" title="Today's top legal news" href={url('/news')} linkLabel="All news" />
+      <Card class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+        <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary-soft text-primary">
+          <Icon name="newspaper" size={24} />
+        </span>
+        <div class="flex-1">
+          <h3 class="font-semibold text-fg">Headlines are on their way</h3>
+          <p class="mt-1 text-sm leading-relaxed text-muted">
+            Once the daily news pipeline is live, the top 3–5 stories from SEBI, RBI, MCA, courts and deal
+            news appear here every morning at 6:00 AM IST.
+          </p>
+        </div>
+      </Card>
+    </section>
+
+    <!-- Quick navigation -->
+    <section class="mt-14" aria-labelledby="explore-heading">
+      <SectionHeading id="explore-heading" title="Explore" description={site.tagline} />
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {quickLinks.map((item) => <NavCard item={item} />)}
+      </div>
+    </section>
+  </Container>
+</BaseLayout>
+
+<script>
+  import { KEYS, readJSON } from '../lib/storage';
+  import { formatLongDate } from '../lib/dates';
+
+  // Greeting by the visitor's local time
+  const hour = new Date().getHours();
+  const greeting = hour < 5 ? 'Working late' : hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  document.querySelector('[data-greeting]')!.textContent = greeting;
+  document.querySelector('[data-today]')!.textContent = formatLongDate();
+
+  // "Continue learning": the last Learn topic opened on this device
+  const last = readJSON<{ title: string; href: string; category?: string } | null>(KEYS.lastLearn, null);
+  const card = document.querySelector<HTMLAnchorElement>('[data-continue-learning]');
+  if (last && card) {
+    card.href = last.href;
+    card.querySelector('[data-cl-eyebrow]')!.textContent = 'Continue learning';
+    card.querySelector('[data-cl-title]')!.textContent = last.title;
+    card.querySelector('[data-cl-desc]')!.textContent = last.category
+      ? `Pick up where you left off in ${last.category}.`
+      : 'Pick up where you left off.';
+  }
+</script>
