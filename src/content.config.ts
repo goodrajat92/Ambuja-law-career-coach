@@ -39,4 +39,18 @@ const practice = defineCollection({
   }),
 });
 
-export const collections = { learn, practice };
+const trends = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/trends' }),
+  schema: z.object({
+    title: z.string(),
+    section: z.enum(['trend-brief', 'career-path']),
+    summary: z.string(),
+    tags: z.array(z.string()).default([]),
+    lastReviewed: z.date(),
+    sources: z.array(z.object({ title: z.string(), url: z.string().url() })).default([]),
+    // career-path only: the skills this path leans on most
+    skillsNeeded: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { learn, practice, trends };

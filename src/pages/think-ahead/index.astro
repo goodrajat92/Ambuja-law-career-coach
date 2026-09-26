@@ -1,46 +1,144 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Card from '../../components/Card.astro';
-import ComingSoon from '../../components/ComingSoon.astro';
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import ReflectionPrompt from '../../components/ReflectionPrompt.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Tag from '../../components/Tag.astro';
+import readingList from '../../data/reading-list.json';
+import skillsRoadmap from '../../data/skills-roadmap.json';
 import { navItem } from '../../data/nav';
-import { thinkAheadSections } from '../../data/taxonomy';
+import { url } from '../../lib/links';
 
 const page = navItem('/think-ahead');
+const entries = await getCollection('trends');
+const trendBriefs = entries.filter((e) => e.data.section === 'trend-brief');
+const careerPaths = entries.filter((e) => e.data.section === 'career-path');
+
+const readingTypeIcon = {
+  book: 'book',
+  newsletter: 'newspaper',
+  podcast: 'sparkles',
+  blog: 'globe',
+  'primary-source': 'scale',
+} as const;
 ---
 
 <BaseLayout title={page.label} description={page.description}>
   <PageHeader eyebrow="Foresight" icon={page.icon} title="See where the practice is heading" description={page.description} />
 
   <Container>
-    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        thinkAheadSections.map((s) => (
-          <li>
-            <Card class="h-full">
-              <span class="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent">
-                <Icon name={s.icon} size={22} />
-              </span>
-              <h2 class="mt-4 text-lg font-semibold text-fg">{s.title}</h2>
-              <p class="mt-1.5 text-sm leading-relaxed text-muted">{s.description}</p>
-            </Card>
-          </li>
-        ))
-      }
-    </ul>
+    <!-- Trend briefs -->
+    <section aria-labelledby="trends-heading">
+      <SectionHeading id="trends-heading" title="Trend briefs" description="What's changing, and why it matters for deal work." />
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          trendBriefs.map((e) => (
+            <li>
+              <Card href={url(`/think-ahead/${e.id}`)} class="flex h-full flex-col">
+                <Icon name="trending" size={20} class="text-primary" />
+                <h3 class="mt-3 font-serif text-lg font-semibold leading-snug text-fg">{e.data.title}</h3>
+                <p class="mt-1.5 flex-1 text-sm leading-relaxed text-muted">{e.data.summary}</p>
+                <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                  Read <Icon name="arrow-right" size={14} class="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
 
-    <section class="mt-12">
-      <ComingSoon
-        phase={6}
-        items={[
-          'Trend briefs, written and reviewed with sources',
-          'Career path guides with the skills each one needs',
-          'A skills roadmap linked into Learn and Practice',
-          'Weekly reflection prompts that save to Notes',
-        ]}
-      />
+    <!-- Career paths -->
+    <section class="mt-14" aria-labelledby="careers-heading">
+      <SectionHeading id="careers-heading" title="Career paths" description="Different routes through a deal-lawyer career, and what each one actually rewards." />
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          careerPaths.map((e) => (
+            <li>
+              <Card href={url(`/think-ahead/${e.id}`)} class="flex h-full flex-col">
+                <Icon name="compass" size={20} class="text-accent" />
+                <h3 class="mt-3 font-serif text-lg font-semibold leading-snug text-fg">{e.data.title}</h3>
+                <p class="mt-1.5 flex-1 text-sm leading-relaxed text-muted">{e.data.summary}</p>
+                <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                  Read <Icon name="arrow-right" size={14} class="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Skills roadmap -->
+    <section class="mt-14" aria-labelledby="roadmap-heading">
+      <SectionHeading id="roadmap-heading" title="Skills roadmap" description="What to learn next, roughly in order — linked into Learn and Practice." />
+      <ol class="grid gap-4">
+        {
+          skillsRoadmap.map((stage, i) => (
+            <li class="rounded-2xl border border-border bg-surface p-5 shadow-card">
+              <div class="flex items-center gap-3">
+                <span class="grid size-8 shrink-0 place-items-center rounded-full bg-primary-soft text-sm font-semibold text-primary">{i + 1}</span>
+                <div>
+                  <h3 class="font-semibold text-fg">{stage.stage}</h3>
+                  <p class="text-sm text-muted">{stage.description}</p>
+                </div>
+              </div>
+              <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+                {stage.items.map((item: any) => {
+                  const href = item.learnSlug ? url(`/learn/${item.learnSlug}`) : item.trendSlug ? url(`/think-ahead/${item.trendSlug}`) : item.practiceHref ? url(item.practiceHref) : null;
+                  return (
+                    <li>
+                      {href ? (
+                        <a href={href} class="group flex items-center gap-2 rounded-xl border border-border bg-surface-2 px-3 py-2.5 text-sm text-fg hover:border-primary/40">
+                          <Icon name="arrow-right" size={14} class="shrink-0 text-primary transition-transform group-hover:translate-x-1" />
+                          <span>{item.label}</span>
+                        </a>
+                      ) : (
+                        <span class="flex items-center gap-2 rounded-xl border border-dashed border-border px-3 py-2.5 text-sm text-muted">
+                          <Icon name="clock" size={14} class="shrink-0" />
+                          <span>{item.label}</span>
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <!-- Reading list -->
+    <section class="mt-14" aria-labelledby="reading-heading">
+      <SectionHeading id="reading-heading" title="Reading list" description="Books, newsletters and podcasts worth your time." />
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          readingList.map((item) => (
+            <li>
+              <Card class="flex h-full flex-col">
+                <div class="flex items-center gap-2">
+                  <Icon name={(readingTypeIcon as any)[item.type] ?? 'book'} size={18} class="text-primary" />
+                  <Tag color={7}>{item.type.replace('-', ' ')}</Tag>
+                </div>
+                <h3 class="mt-3 font-semibold text-fg">{item.title}</h3>
+                <p class="text-sm text-muted">{item.author}</p>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-muted">{item.note}</p>
+              </Card>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Weekly reflection -->
+    <section class="mt-14 mb-4" aria-labelledby="reflection-heading">
+      <SectionHeading id="reflection-heading" title="Weekly reflection" description="A new prompt each week. Your answer saves straight to Notes." />
+      <ReflectionPrompt />
     </section>
   </Container>
 </BaseLayout>

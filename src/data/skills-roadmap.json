@@ -1,0 +1,47 @@
+[
+  {
+    "stage": "Foundation",
+    "description": "The vocabulary every deal touches, regardless of which side of the table you're on.",
+    "items": [
+      { "label": "Kinds of share capital (Companies Act basics)", "learnSlug": "kinds-of-share-capital" },
+      { "label": "Indemnity clauses and how they actually work", "learnSlug": "indemnity-clauses" },
+      { "label": "Drafting a first clause under supervision", "practiceHref": "/practice/drafting" }
+    ]
+  },
+  {
+    "stage": "Core deal mechanics",
+    "description": "The instruments and structures that show up in almost every VC or M&A deal.",
+    "items": [
+      { "label": "CCPS and why VC deals are structured around it", "learnSlug": "ccps-explained" },
+      { "label": "Anti-dilution protection and down-round mechanics", "learnSlug": "anti-dilution-protection" },
+      { "label": "Share purchase vs. business transfer structuring", "learnSlug": "share-purchase-vs-business-transfer" },
+      { "label": "Reading a term sheet's economic terms end to end", "practiceHref": "/practice/analysis/analyze-term-sheet-terms" }
+    ]
+  },
+  {
+    "stage": "Cross-border and regulatory",
+    "description": "Where a deal touches a regulator directly — this is where fabricated citations do the most damage, so lean on primary sources.",
+    "items": [
+      { "label": "FDI entry routes: automatic vs. government approval", "learnSlug": "fdi-entry-routes" },
+      { "label": "SEBI's ICDR framework for public capital raises", "learnSlug": "sebi-icdr-overview" },
+      { "label": "GIFT City / IFSC as a cross-border structuring option", "trendSlug": "gift-city-why-it-matters" }
+    ]
+  },
+  {
+    "stage": "Judgment and client-facing skill",
+    "description": "The skills that actually decide how far a technically strong lawyer goes.",
+    "items": [
+      { "label": "Explaining a complex term in plain language", "practiceHref": "/practice/communication/explain-anti-dilution-to-founder" },
+      { "label": "Negotiating from underlying interests, not just positions", "practiceHref": "/practice/negotiation/negotiate-liquidation-preference" },
+      { "label": "Reading financials and thinking about valuation (Business Skills topics coming soon)" }
+    ]
+  },
+  {
+    "stage": "Special situations",
+    "description": "Less frequent, higher-stakes matters worth understanding before you're suddenly on one.",
+    "items": [
+      { "label": "The IBC's time-bound insolvency process", "learnSlug": "cirp-timeline" },
+      { "label": "Choosing CIRP vs. a scheme of arrangement", "practiceHref": "/practice/research/research-cirp-vs-scheme" }
+    ]
+  }
+]

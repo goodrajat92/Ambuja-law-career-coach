@@ -1,0 +1,67 @@
+---
+/**
+ * Weekly reflection prompt (rotates once a week, see src/lib/daily.ts's
+ * pickForWeek). Answers save straight to Notes — CLAUDE.md's spec for
+ * this section — with a small autosaved draft in localStorage so a
+ * half-written answer survives a page reload before it's saved.
+ */
+import Icon from './Icon.astro';
+import { pickForWeek } from '../lib/daily';
+import reflections from '../data/reflections.json';
+
+const prompt = pickForWeek(reflections)!;
+---
+
+<div class="rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-6" data-reflection>
+  <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+    <Icon name="pen" size={14} strokeWidth={2} />
+    This week's reflection
+  </p>
+  <p data-reflection-prompt class="mt-2.5 font-serif text-lg leading-snug text-fg">{prompt}</p>
+  <textarea
+    data-reflection-draft
+    rows="4"
+    placeholder="Write your answer here..."
+    class="mt-4 w-full resize-y rounded-xl border border-border bg-surface-2 p-3 text-sm leading-relaxed text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
+  ></textarea>
+  <div class="mt-3 flex items-center justify-between gap-3">
+    <p data-reflection-status class="text-xs text-muted"></p>
+    <button
+      type="button"
+      data-reflection-save
+      class="inline-flex min-h-10 shrink-0 items-center gap-1.5 rounded-full bg-primary px-4 text-sm font-semibold text-primary-fg hover:-translate-y-0.5 hover:shadow-card"
+    >
+      <Icon name="notebook" size={15} />
+      Save to notes
+    </button>
+  </div>
+</div>
+
+<script>
+  import { readJSON, writeJSON } from '../lib/storage';
+  import { saveQuickNote } from '../lib/notesDb';
+
+  const root = document.querySelector<HTMLElement>('[data-reflection]');
+  if (root) {
+    const prompt = root.querySelector<HTMLElement>('[data-reflection-prompt]')!.textContent!;
+    const draft = root.querySelector<HTMLTextAreaElement>('[data-reflection-draft]')!;
+    const status = root.querySelector<HTMLElement>('[data-reflection-status]')!;
+    const key = `reflectionDraft:${prompt.slice(0, 40)}`;
+
+    draft.value = readJSON<string>(key, '');
+    let saveTimer: ReturnType<typeof setTimeout>;
+    draft.addEventListener('input', () => {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => writeJSON(key, draft.value), 400);
+    });
+
+    root.querySelector('[data-reflection-save]')!.addEventListener('click', async () => {
+      if (!draft.value.trim()) {
+        status.textContent = 'Write an answer first.';
+        return;
+      }
+      await saveQuickNote({ title: `Reflection: ${prompt}`, excerpt: draft.value, tag: 'reflection' });
+      status.textContent = 'Saved to your notes.';
+    });
+  }
+</script>

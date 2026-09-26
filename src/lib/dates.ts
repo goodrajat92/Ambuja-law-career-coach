@@ -38,3 +38,8 @@ export function addDays(iso: string, days: number): string {
   const [y, m, d] = iso.split('-').map(Number);
   return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10);
 }
+
+/** Whole weeks since 1970-01-01 (Monday-anchored) for a 'YYYY-MM-DD' string — used for weekly rotation (e.g. the reflection prompt). */
+export function weekNumber(iso: string): number {
+  return Math.floor(dayNumber(iso) / 7);
+}

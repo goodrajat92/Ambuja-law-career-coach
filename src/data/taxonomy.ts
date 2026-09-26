@@ -5,8 +5,6 @@
  *
  * `color` picks one of the 8 category color tokens (--cat-1 ... --cat-8).
  */
-import type { IconName } from '../lib/icons';
-
 export type CatColor = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export interface Category {
@@ -48,19 +46,4 @@ export const newsCategories: Category[] = [
   { slug: 'insolvency', label: 'Insolvency', color: 8 },
   { slug: 'regulatory', label: 'Regulatory updates', color: 1 },
   { slug: 'other', label: 'Other', color: 8 },
-];
-
-export interface Section {
-  title: string;
-  description: string;
-  icon: IconName;
-}
-
-export const thinkAheadSections: Section[] = [
-  { title: 'Trend briefs', description: 'AI and legaltech, the funding climate, GIFT City, regulatory direction, cross-border deals.', icon: 'trending' },
-  { title: 'Career paths', description: 'Partner track, in-house and GC, fund counsel, policy, legaltech.', icon: 'compass' },
-  { title: 'Skills roadmap', description: 'What to learn next, linked into Learn and Practice.', icon: 'layers' },
-  { title: 'Reading list', description: 'Books, newsletters and podcasts worth your time.', icon: 'book' },
-  { title: 'Weekly reflection', description: 'A prompt each week; your answers are saved to Notes.', icon: 'pen' },
-  { title: "What's changing", description: "A weekly brief distilled from the past week's news.", icon: 'sparkles' },
 ];

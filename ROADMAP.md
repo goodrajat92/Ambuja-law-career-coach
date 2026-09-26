@@ -48,7 +48,13 @@ Update this file whenever a feature is finished.
   - [x] "Save to notes" wired into News (per item), Learn (per topic), and Practice (save your own answer) — `SaveToNotes.astro`
   - [x] "Notes are stored on this device only" notice
   - Verified end-to-end with Playwright: save-from-News → appears in Notes → create → search-filter → export → delete → reload-persists, no console errors
-- [ ] **Phase 6 — Think Ahead:** trend briefs, career paths, skills roadmap, reading list, reflections
+- [x] **Phase 6 — Think Ahead**
+  - [x] `trends` content collection (Zod), shared by trend briefs and career paths
+  - [x] 3 trend briefs (GIFT City/IFSCA, AI in legal practice, reading a down market) and 3 career paths (partner track, in-house/GC, fund counsel), each linking back into Learn/Practice where relevant
+  - [x] Skills roadmap: 5 stages, data-driven (`src/data/skills-roadmap.json`), linking into real Learn/Practice pages where content exists
+  - [x] Reading list (`src/data/reading-list.json`, 8 items)
+  - [x] Weekly reflection: 10 prompts, rotates once a week (deterministic, `pickForWeek` in `src/lib/daily.ts`), answer autosaves as a draft and saves to Notes on request
+  - [ ] Optional AI-generated weekly "what's changing" brief — deferred to Phase 7's optional AI step
 - [ ] **Phase 7 — Polish:** Pagefind search, PWA, Lighthouse audit, optional AI enrichment
 
 ## Notes for whoever picks this up next

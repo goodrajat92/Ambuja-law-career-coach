@@ -1,0 +1,10 @@
+[
+  { "title": "Venture Deals", "author": "Brad Feld & Jason Mendelson", "type": "book", "note": "The standard plain-English walkthrough of a VC term sheet, clause by clause — a natural companion to this site's VC & startup deals Learn category." },
+  { "title": "The Intelligent Investor", "author": "Benjamin Graham", "type": "book", "note": "Not a legal text, but essential for the business-judgment side of deal work: how an investor actually thinks about value." },
+  { "title": "Getting to Yes", "author": "Roger Fisher & William Ury", "type": "book", "note": "The foundational negotiation text behind the interests-not-positions approach used in this site's negotiation exercises." },
+  { "title": "IndiaCorpLaw", "author": "NLSIU / contributing academics and practitioners", "type": "blog", "note": "Deep, citation-careful commentary on Indian company law, securities law and M&A developments — a good habit to read regularly." },
+  { "title": "SEBI's own circulars and press releases", "author": "Securities and Exchange Board of India", "type": "primary-source", "note": "Not a newsletter — but subscribing to SEBI's own releases is the single highest-signal way to catch a regulatory change before a secondary source explains it." },
+  { "title": "Bar & Bench", "author": "Bar & Bench", "type": "newsletter", "note": "Daily Indian legal news, including deal and regulatory coverage — also one of this site's own News sources." },
+  { "title": "a16z Podcast", "author": "Andreessen Horowitz", "type": "podcast", "note": "Useful for the business and market context around the deals a VC lawyer works on, even where the legal detail is US-specific." },
+  { "title": "Corporate Finance", "author": "Jonathan Berk & Peter DeMarzo", "type": "book", "note": "A textbook, not a light read — but the reference most worth having on the shelf for the valuation and financial-statement literacy the Business Skills Learn category points toward." }
+]
