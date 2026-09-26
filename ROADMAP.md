@@ -41,7 +41,13 @@ Update this file whenever a feature is finished.
   - [x] 1 exercise per sub-tab seeded (7 total): drafting (ROFR clause), review (indemnity clause), research (CIRP vs scheme memo), communication (client email), negotiation (liquidation preference), analysis (term sheet math), quiz (recall)
   - [ ] 2–3 exercises per sub-tab is the CLAUDE.md target — only 1/sub-tab done so far
   - [ ] Daily practice prompt on Home still rotates through sub-tabs rather than a specific exercise — needs a "prompt of the day" picker once the pool is bigger
-- [ ] **Phase 5 — Notes:** IndexedDB storage interface, CRUD, tags, search, export/import
+- [x] **Phase 5 — Notes**
+  - [x] Storage interface (`NotesStore` in `src/lib/notesDb.ts`) backed by IndexedDB, designed so a future cloud-sync backend can implement the same interface without touching the UI
+  - [x] Dependency-free Markdown renderer (`src/lib/markdown.ts`) — escapes HTML first, then re-adds only headings/bold/italic/code/links/lists
+  - [x] Full CRUD, tag filter, keyword search, export (downloads JSON) and import (merges a JSON file) — `src/lib/notesApp.ts` + `src/pages/notes/index.astro`
+  - [x] "Save to notes" wired into News (per item), Learn (per topic), and Practice (save your own answer) — `SaveToNotes.astro`
+  - [x] "Notes are stored on this device only" notice
+  - Verified end-to-end with Playwright: save-from-News → appears in Notes → create → search-filter → export → delete → reload-persists, no console errors
 - [ ] **Phase 6 — Think Ahead:** trend briefs, career paths, skills roadmap, reading list, reflections
 - [ ] **Phase 7 — Polish:** Pagefind search, PWA, Lighthouse audit, optional AI enrichment
 

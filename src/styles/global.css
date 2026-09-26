@@ -37,6 +37,8 @@
   --accent-soft: #fdf1dc;
 
   --success: #1f7a4d;
+  --danger: #be123c;
+  --danger-soft: #fdecef;
 
   /* Category colors (news + learn tags). Used as text; backgrounds are
      tinted versions via color-mix in the Tag component. */
@@ -84,6 +86,8 @@
   --accent-soft: #2a2110;
 
   --success: #4ade80;
+  --danger: #fb7185;
+  --danger-soft: #3a1520;
 
   --cat-1: #a5b4fc;
   --cat-2: #c4b5fd;
@@ -126,6 +130,8 @@
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
   --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
   --color-feature-from: var(--feature-from);
   --color-feature-to: var(--feature-to);
   --color-feature-fg: var(--feature-fg);

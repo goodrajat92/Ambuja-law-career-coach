@@ -1,0 +1,59 @@
+---
+/**
+ * "Save to notes" button — stores a link + excerpt as a note (IndexedDB),
+ * used from News items, Learn topics, and Practice answers. One click,
+ * no form: the full note can be edited afterwards on the Notes page.
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  excerpt?: string;
+  url?: string;
+  tag: string;
+  class?: string;
+  compact?: boolean;
+}
+const { title, excerpt, url, tag, class: className, compact = false } = Astro.props;
+---
+
+<button
+  type="button"
+  data-save-to-notes
+  data-note-title={title}
+  data-note-excerpt={excerpt}
+  data-note-url={url}
+  data-note-tag={tag}
+  class:list={[
+    'inline-flex min-h-9 items-center gap-1.5 rounded-full border border-border bg-surface text-xs font-semibold text-muted transition hover:border-primary/40 hover:text-primary',
+    compact ? 'px-2.5' : 'px-3',
+    className,
+  ]}
+>
+  <Icon name="notebook" size={14} />
+  <span data-save-label>Save to notes</span>
+</button>
+
+<script>
+  import { saveQuickNote } from '../lib/notesDb';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-save-to-notes]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      if (btn.dataset.saved === 'true') return;
+      const label = btn.querySelector<HTMLElement>('[data-save-label]')!;
+      try {
+        await saveQuickNote({
+          title: btn.dataset.noteTitle || 'Untitled',
+          excerpt: btn.dataset.noteExcerpt,
+          url: btn.dataset.noteUrl,
+          tag: btn.dataset.noteTag || 'general',
+        });
+        btn.dataset.saved = 'true';
+        btn.classList.add('!border-success', '!text-success');
+        label.textContent = 'Saved';
+      } catch {
+        label.textContent = 'Couldn’t save';
+      }
+    });
+  });
+</script>

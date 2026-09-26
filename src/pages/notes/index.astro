@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
-import ComingSoon from '../../components/ComingSoon.astro';
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { navItem } from '../../data/nav';
@@ -24,18 +23,88 @@ const page = navItem('/notes');
       </p>
     </div>
 
-    <section class="mt-8">
-      <ComingSoon
-        phase={5}
-        items={[
-          'Create, edit and delete notes, with Markdown',
-          'Titles, tags and timestamps',
-          'Search and filter by tag',
-          '"Save to notes" from news, Learn topics and practice answers',
-          'Export and import as JSON, so browser data is never lost',
-          'Designed to allow optional cloud sync later',
-        ]}
-      />
-    </section>
+    <div data-notes-app class="mt-8">
+      <!-- Toolbar -->
+      <div class="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          data-notes-new
+          class="inline-flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-fg shadow-card transition hover:-translate-y-0.5 hover:shadow-lift"
+        >
+          <Icon name="plus" size={16} />
+          New note
+        </button>
+
+        <label class="flex w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-surface-2 px-3 py-2 sm:w-auto sm:min-w-[12rem] sm:flex-1">
+          <span class="sr-only">Search notes</span>
+          <Icon name="notebook" size={16} class="shrink-0 text-muted" />
+          <input type="search" data-notes-search placeholder="Search notes..." class="w-full min-w-0 bg-transparent text-sm text-fg placeholder:text-muted focus:outline-none" />
+        </label>
+
+        <select data-notes-tag-filter class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+          <option value="">All tags</option>
+        </select>
+
+        <div class="ml-auto flex gap-2">
+          <button type="button" data-notes-export class="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border bg-surface px-3 text-sm font-medium text-fg hover:bg-surface-2">
+            <Icon name="download" size={15} />
+            Export
+          </button>
+          <label class="inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-full border border-border bg-surface px-3 text-sm font-medium text-fg hover:bg-surface-2">
+            <Icon name="upload" size={15} />
+            Import
+            <input type="file" accept="application/json" data-notes-import class="hidden" />
+          </label>
+        </div>
+      </div>
+
+      <!-- New / edit form -->
+      <div data-note-form-wrap class="mt-5 hidden rounded-2xl border border-primary/25 bg-primary-soft p-5">
+        <h2 data-note-form-heading class="font-semibold text-fg">New note</h2>
+        <form data-note-form class="mt-3 grid gap-3">
+          <input
+            type="text"
+            data-note-form-title
+            placeholder="Title"
+            required
+            class="min-h-11 rounded-xl border border-border bg-surface px-3 text-sm text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
+          />
+          <input
+            type="text"
+            data-note-form-tags
+            placeholder="Tags, comma separated (e.g. term-sheet, follow-up)"
+            class="min-h-11 rounded-xl border border-border bg-surface px-3 text-sm text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
+          />
+          <textarea
+            data-note-form-body
+            rows="8"
+            placeholder="Write in Markdown: # headings, **bold**, *italic*, - lists, [links](https://...)"
+            class="resize-y rounded-xl border border-border bg-surface p-3 text-sm leading-relaxed text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
+          ></textarea>
+          <div class="flex gap-2">
+            <button type="submit" class="inline-flex min-h-11 items-center rounded-full bg-primary px-4 text-sm font-semibold text-primary-fg hover:-translate-y-0.5 hover:shadow-card">
+              Save note
+            </button>
+            <button type="button" data-note-form-cancel class="inline-flex min-h-11 items-center rounded-full border border-border bg-surface px-4 text-sm font-medium text-fg hover:bg-surface-2">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <p data-notes-count class="mt-5 text-sm text-muted"></p>
+
+      <ul data-notes-list class="mt-2 grid gap-4 sm:grid-cols-2"></ul>
+
+      <p data-notes-empty class="hidden rounded-2xl border border-dashed border-border bg-surface/60 p-8 text-center text-muted">
+        No notes yet. Start one with "New note", or use "Save to notes" on any News, Learn, or Practice page.
+      </p>
+    </div>
   </Container>
 </BaseLayout>
+
+<script>
+  import { initNotesApp } from '../../lib/notesApp';
+  const root = document.querySelector<HTMLElement>('[data-notes-app]');
+  if (root) initNotesApp(root);
+</script>

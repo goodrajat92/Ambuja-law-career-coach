@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Icon from '../../components/Icon.astro';
 import MarkAsRead from '../../components/MarkAsRead.astro';
+import SaveToNotes from '../../components/SaveToNotes.astro';
 import Tag from '../../components/Tag.astro';
 import { learnCategories } from '../../data/taxonomy';
 import { url } from '../../lib/links';
@@ -56,6 +57,7 @@ const lastReviewedFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month
 
     <div class="mt-6 flex flex-wrap items-center gap-3">
       <MarkAsRead slug={topic.id} />
+      <SaveToNotes title={topic.data.title} excerpt={topic.data.summary} url={url(`/learn/${topic.id}`)} tag="learn" />
       <div class="flex flex-wrap gap-1.5">
         {topic.data.tags.map((t) => <Tag color={8}>{t}</Tag>)}
       </div>

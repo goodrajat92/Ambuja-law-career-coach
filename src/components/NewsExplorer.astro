@@ -6,6 +6,7 @@
  * only" + "filtering is done client-side over JSON data").
  */
 import Icon from './Icon.astro';
+import SaveToNotes from './SaveToNotes.astro';
 import Tag from './Tag.astro';
 import { newsCategories } from '../data/taxonomy';
 import type { NewsItem } from '../lib/news';
@@ -80,28 +81,28 @@ const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short
           data-published={item.publishedAt}
           data-search={`${item.headline} ${item.summary} ${item.sourceName}`.toLowerCase()}
         >
-          <a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group block rounded-2xl border border-border bg-surface p-5 shadow-card transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lift"
-          >
-            <div class="flex flex-wrap items-center gap-2 text-xs text-muted">
-              <span class="font-semibold text-fg">{item.sourceName}</span>
-              <span aria-hidden="true">·</span>
-              <span>{item.country}</span>
-              <span aria-hidden="true">·</span>
-              <time datetime={item.publishedAt}>{dateFmt.format(new Date(item.publishedAt))}</time>
-              <Tag color={categoryColor.get(item.category) ?? 8} class="ml-auto">
-                {categoryLabel.get(item.category) ?? item.category}
-              </Tag>
+          <div class="group rounded-2xl border border-border bg-surface p-5 shadow-card transition hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-lift">
+            <a href={item.link} target="_blank" rel="noopener noreferrer" class="block">
+              <div class="flex flex-wrap items-center gap-2 text-xs text-muted">
+                <span class="font-semibold text-fg">{item.sourceName}</span>
+                <span aria-hidden="true">·</span>
+                <span>{item.country}</span>
+                <span aria-hidden="true">·</span>
+                <time datetime={item.publishedAt}>{dateFmt.format(new Date(item.publishedAt))}</time>
+                <Tag color={categoryColor.get(item.category) ?? 8} class="ml-auto">
+                  {categoryLabel.get(item.category) ?? item.category}
+                </Tag>
+              </div>
+              <h3 class="mt-2 flex items-start gap-2 font-serif text-lg font-semibold leading-snug text-fg">
+                <span class="flex-1">{item.headline}</span>
+                <Icon name="arrow-right" size={18} class="mt-1 shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
+              </h3>
+              {item.summary && <p class="mt-1.5 text-sm leading-relaxed text-muted">{item.summary}</p>}
+            </a>
+            <div class="mt-3">
+              <SaveToNotes title={item.headline} excerpt={item.summary} url={item.link} tag="news" compact />
             </div>
-            <h3 class="mt-2 flex items-start gap-2 font-serif text-lg font-semibold leading-snug text-fg">
-              <span class="flex-1">{item.headline}</span>
-              <Icon name="arrow-right" size={18} class="mt-1 shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
-            </h3>
-            {item.summary && <p class="mt-1.5 text-sm leading-relaxed text-muted">{item.summary}</p>}
-          </a>
+          </div>
         </li>
       ))
     }
