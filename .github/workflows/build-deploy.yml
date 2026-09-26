@@ -33,7 +33,13 @@ jobs:
           node-version: 22 # Astro 7 needs Node >= 22.12
           cache: npm
 
-      - run: npm ci
+      - name: Install dependencies
+        # Playwright is a devDependency used only for local QA and
+        # `npm run gen:icons` — never in this workflow — so skip its
+        # (large, unused) browser-binary download here.
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm ci
 
       # ---- Daily data refresh (schedule / manual runs only) -------------
       # Each step is skipped until its script exists, and never fails the
