@@ -11,7 +11,7 @@ sources:
     url: "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx"
   - title: "Companies Act, 2013 — India Code (bare act)"
     url: "https://www.indiacode.nic.in/handle/123456789/2114"
-related: [kinds-of-share-capital]
+related: [kinds-of-share-capital, deal-value-threshold]
 keyTakeaways:
   - "A share purchase transfers ownership of the company itself — the buyer inherits every asset, contract, and liability the company already has."
   - "A business transfer (asset sale) moves specific assets and liabilities out of a company into the buyer, leaving the rest of the seller company untouched."

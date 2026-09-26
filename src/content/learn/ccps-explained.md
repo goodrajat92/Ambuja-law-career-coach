@@ -11,7 +11,7 @@ sources:
     url: "https://www.indiacode.nic.in/handle/123456789/2114"
   - title: "Foreign Exchange Management (Non-debt Instruments) Rules, 2019 — via RBI's FEMA notifications page"
     url: "https://www.rbi.org.in/Scripts/BS_FemaNotifications.aspx"
-related: [kinds-of-share-capital, anti-dilution-protection, fdi-entry-routes]
+related: [kinds-of-share-capital, anti-dilution-protection, fdi-entry-routes, reading-a-cap-table]
 keyTakeaways:
   - "CCPS is a preference share (Companies Act, Section 43) that must convert into equity — it isn't optional, hence 'compulsorily'."
   - "The conversion ratio, trigger event, and timing are fixed by contract (the share subscription/shareholders' agreement) and the share terms, not by the Companies Act itself."

@@ -9,7 +9,7 @@ lastReviewed: 2026-09-27
 sources:
   - title: "Companies Act, 2013 — Section 43 (Kinds of share capital)"
     url: "https://www.indiacode.nic.in/handle/123456789/2114"
-related: [ccps-explained, kinds-of-share-capital]
+related: [ccps-explained, kinds-of-share-capital, reading-a-cap-table]
 keyTakeaways:
   - "Anti-dilution protection adjusts an existing investor's conversion ratio if a later round prices shares lower than the investor paid — a 'down round'."
   - "It is a contractual mechanism layered onto the CCPS conversion terms, not a separate statutory right."

@@ -11,7 +11,7 @@ sources:
     url: "https://www.rbi.org.in/Scripts/BS_FemaNotifications.aspx"
   - title: "Consolidated FDI Policy — Department for Promotion of Industry and Internal Trade (DPIIT)"
     url: "https://dpiit.gov.in/policies-rules-acts/foreign-direct-investment-policy"
-related: [kinds-of-share-capital]
+related: [kinds-of-share-capital, gift-city-fund-basics, angel-tax-abolition]
 keyTakeaways:
   - "The Foreign Exchange Management (Non-Debt Instruments) Rules, 2019 (the NDI Rules), notified 17 October 2019, are the principal rules governing FDI into India."
   - "Every sector sits on one of two entry routes: automatic (no prior government approval needed, only post-facto RBI reporting) or government (approval needed before the investment)."

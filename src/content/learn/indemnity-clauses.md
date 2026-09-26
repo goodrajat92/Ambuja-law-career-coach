@@ -9,7 +9,7 @@ lastReviewed: 2026-09-27
 sources:
   - title: "Indian Contract Act, 1872 — India Code (bare act)"
     url: "https://www.indiacode.nic.in/handle/123456789/2187"
-related: [share-purchase-vs-business-transfer]
+related: [share-purchase-vs-business-transfer, arbitration-seat-vs-venue, dpdp-act-basics]
 keyTakeaways:
   - "Section 124 of the Indian Contract Act, 1872 defines a contract of indemnity as a promise to save the promisee from loss caused by the promisor, or by any other person."
   - "Section 125 sets out the indemnity-holder's rights when sued — including recovering damages and costs reasonably paid in a suit within the promise's scope."
