@@ -4,6 +4,7 @@
  * Quote of the day, streak/progress, today's practice focus, continue
  * learning, top legal news and quick navigation to every tab.
  */
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Card from '../components/Card.astro';
@@ -21,10 +22,12 @@ import { formatLongDate } from '../lib/dates';
 import { url } from '../lib/links';
 import { topHeadlines } from '../lib/news';
 
-// Until the exercise pool exists (Phase 4), rotate a daily practice focus
-// through the Practice sub-tabs.
+// Today's practice prompt: a specific exercise, picked deterministically
+// by date from the whole pool (sorted so the pick is stable across builds).
 const practice = navItem('/practice');
-const focus = pickForDate(practice.children ?? [])!;
+const exercises = (await getCollection('practice')).sort((a, b) => a.id.localeCompare(b.id));
+const focus = pickForDate(exercises)!;
+const focusSubTabLabel = practice.children?.find((c) => c.slug === focus.data.subTab)?.label ?? focus.data.subTab;
 const quickLinks = nav.filter((n) => n.href !== '/');
 const headlines = topHeadlines(5);
 const categoryColor = new Map(newsCategories.map((c) => [c.slug, c.color]));
@@ -53,19 +56,20 @@ const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short
 
     <!-- Practice focus + continue learning -->
     <section class="animate-rise mt-5 grid gap-5 [animation-delay:160ms] md:grid-cols-2" aria-label="Your next steps">
-      <Card href={url(`${practice.href}/${focus.slug}`)} class="relative overflow-hidden">
+      <Card href={url(`/practice/${focus.data.subTab}/${focus.id}`)} class="relative overflow-hidden">
         <div class="flex items-center justify-between gap-3">
           <p class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
             <Icon name="target" size={15} strokeWidth={2} />
-            Today's practice focus
+            Today's practice prompt
           </p>
           <Icon name="arrow-right" size={18} class="text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
         </div>
-        <h2 class="mt-4 text-2xl font-semibold text-fg">{focus.label}</h2>
-        <p class="mt-2 leading-relaxed text-muted">{focus.description}</p>
+        <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-muted">{focusSubTabLabel}</p>
+        <h2 class="mt-1 text-2xl font-semibold text-fg">{focus.data.title}</h2>
+        <p class="mt-2 leading-relaxed text-muted">Builds: {focus.data.skills.join(', ')}</p>
         <p class="mt-5 inline-flex items-center gap-2 rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-muted">
           <Icon name="clock" size={14} />
-          Changes every day at midnight IST
+          ~{focus.data.timeMinutes} min · changes every day at midnight IST
         </p>
       </Card>
 

@@ -1,87 +1,1226 @@
 [
-  { "text": "The life of the law has not been logic: it has been experience.", "author": "Oliver Wendell Holmes Jr.", "context": "The Common Law (1881)" },
-  { "text": "A word is not a crystal, transparent and unchanged; it is the skin of a living thought and may vary greatly in color and content according to the circumstances and the time in which it is used.", "author": "Oliver Wendell Holmes Jr.", "context": "Towne v. Eisner (1918)" },
-  { "text": "Taxes are what we pay for civilized society.", "author": "Oliver Wendell Holmes Jr.", "context": "Compañía General de Tabacos v. Collector (1927), dissent" },
-  { "text": "Injustice anywhere is a threat to justice everywhere.", "author": "Martin Luther King Jr.", "context": "Letter from Birmingham Jail (1963)" },
-  { "text": "The arc of the moral universe is long, but it bends toward justice.", "author": "Martin Luther King Jr.", "context": "Adapting a line by Theodore Parker" },
-  { "text": "Education is the most powerful weapon which you can use to change the world.", "author": "Nelson Mandela", "context": "Speech launching the Mindset Network (2003)" },
-  { "text": "I learned that courage was not the absence of fear, but the triumph over it.", "author": "Nelson Mandela", "context": "Long Walk to Freedom (1994)" },
-  { "text": "Sunlight is said to be the best of disinfectants; electric light the most efficient policeman.", "author": "Louis D. Brandeis", "context": "Other People's Money (1914)" },
-  { "text": "If we would guide by the light of reason, we must let our minds be bold.", "author": "Louis D. Brandeis", "context": "New State Ice Co. v. Liebmann (1932), dissent" },
-  { "text": "Fight for the things that you care about, but do it in a way that will lead others to join you.", "author": "Ruth Bader Ginsburg", "context": "Radcliffe Day (2015)" },
-  { "text": "It is emphatically the province and duty of the judicial department to say what the law is.", "author": "John Marshall", "context": "Marbury v. Madison (1803)" },
-  { "text": "We are not final because we are infallible, but we are infallible only because we are final.", "author": "Robert H. Jackson", "context": "Brown v. Allen (1953), concurrence" },
-  { "text": "The spirit of liberty is the spirit which is not too sure that it is right.", "author": "Learned Hand", "context": "\"I Am an American\" Day address (1944)" },
-  { "text": "Be you never so high, the law is above you.", "author": "Lord Denning", "context": "Quoting Thomas Fuller, Gouriet v Union of Post Office Workers (1977)" },
-  { "text": "Justice should not only be done, but should manifestly and undoubtedly be seen to be done.", "author": "Lord Hewart", "context": "R v Sussex Justices, ex parte McCarthy (1924)" },
-  { "text": "It is better that ten guilty persons escape, than that one innocent suffer.", "author": "William Blackstone", "context": "Commentaries on the Laws of England (1769)" },
-  { "text": "The basic rule may perhaps be tersely put as bail, not jail.", "author": "Justice V. R. Krishna Iyer", "context": "State of Rajasthan v. Balchand (1977)" },
-  { "text": "However good a Constitution may be, it is sure to turn out bad because those who are called to work it, happen to be a bad lot.", "author": "B. R. Ambedkar", "context": "Constituent Assembly, 25 November 1949" },
-  { "text": "Educate, agitate, organise.", "author": "B. R. Ambedkar" },
-  { "text": "I realized that the true function of a lawyer was to unite parties riven asunder.", "author": "Mahatma Gandhi", "context": "The Story of My Experiments with Truth" },
-  { "text": "At the stroke of the midnight hour, when the world sleeps, India will awake to life and freedom.", "author": "Jawaharlal Nehru", "context": "\"Tryst with Destiny\" speech (1947)" },
-  { "text": "Where the mind is without fear and the head is held high; where knowledge is free.", "author": "Rabindranath Tagore", "context": "Gitanjali, poem 35" },
-  { "text": "Arise, awake, and stop not till the goal is reached.", "author": "Swami Vivekananda", "context": "Drawing on the Katha Upanishad" },
-  { "text": "You have a right to your actions, but never to the fruits of your actions.", "author": "Bhagavad Gita", "context": "Chapter 2, verse 47 (a common translation)" },
-  { "text": "Discourage litigation. Persuade your neighbors to compromise whenever you can. Point out to them how the nominal winner is often a real loser—in fees, expenses, and waste of time.", "author": "Abraham Lincoln", "context": "Notes for a law lecture (c. 1850)" },
-  { "text": "Facts are stubborn things; and whatever may be our wishes, our inclinations, or the dictates of our passion, they cannot alter the state of facts and evidence.", "author": "John Adams", "context": "Defence of the British soldiers in the Boston Massacre trials (1770)" },
-  { "text": "You never really understand a person until you consider things from his point of view—until you climb into his skin and walk around in it.", "author": "Harper Lee", "context": "To Kill a Mockingbird (1960), Atticus Finch" },
-  { "text": "The law is reason unaffected by desire.", "author": "Aristotle", "context": "Politics, Book III" },
-  { "text": "Let the welfare of the people be the supreme law.", "author": "Cicero", "context": "De Legibus" },
-  { "text": "To no one will we sell, to no one deny or delay right or justice.", "author": "Magna Carta", "context": "Clause 40 (1215)" },
-  { "text": "The difference between the almost right word and the right word is really a large matter—'tis the difference between the lightning-bug and the lightning.", "author": "Mark Twain", "context": "Letter to George Bainton (1888)" },
-  { "text": "I have made this longer than usual because I have not had time to make it shorter.", "author": "Blaise Pascal", "context": "Provincial Letters (1657)" },
-  { "text": "Omit needless words.", "author": "William Strunk Jr.", "context": "The Elements of Style" },
-  { "text": "Never use a long word where a short one will do.", "author": "George Orwell", "context": "Politics and the English Language (1946)" },
-  { "text": "Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.", "author": "Antoine de Saint-Exupéry", "context": "Wind, Sand and Stars (1939)" },
-  { "text": "The best is the enemy of the good.", "author": "Voltaire" },
-  { "text": "Good is the enemy of great.", "author": "Jim Collins", "context": "Good to Great (2001)" },
-  { "text": "Price is what you pay; value is what you get.", "author": "Warren Buffett", "context": "Berkshire Hathaway shareholder letter (2008)" },
-  { "text": "You only find out who is swimming naked when the tide goes out.", "author": "Warren Buffett", "context": "Berkshire Hathaway shareholder letter (2001)" },
-  { "text": "The investor's chief problem—and even his worst enemy—is likely to be himself.", "author": "Benjamin Graham", "context": "The Intelligent Investor" },
-  { "text": "The individual investor should act consistently as an investor and not as a speculator.", "author": "Benjamin Graham", "context": "The Intelligent Investor" },
-  { "text": "Invert, always invert.", "author": "Charlie Munger", "context": "Borrowing from the mathematician Carl Jacobi" },
-  { "text": "The difficulty lies, not in the new ideas, but in escaping from the old ones.", "author": "John Maynard Keynes", "context": "The General Theory, preface (1936)" },
-  { "text": "It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest.", "author": "Adam Smith", "context": "The Wealth of Nations (1776)" },
-  { "text": "There is nothing so useless as doing efficiently that which should not be done at all.", "author": "Peter Drucker", "context": "Harvard Business Review (1963)" },
-  { "text": "Only the paranoid survive.", "author": "Andrew S. Grove", "context": "Book title (1996)" },
-  { "text": "Stay hungry. Stay foolish.", "author": "Steve Jobs", "context": "Stanford commencement (2005), quoting the Whole Earth Catalog" },
-  { "text": "Your time is limited, so don't waste it living someone else's life.", "author": "Steve Jobs", "context": "Stanford commencement (2005)" },
-  { "text": "You can't connect the dots looking forward; you can only connect them looking backwards.", "author": "Steve Jobs", "context": "Stanford commencement (2005)" },
-  { "text": "The best way to predict the future is to invent it.", "author": "Alan Kay", "context": "Xerox PARC (1971)" },
-  { "text": "Don't be a know-it-all; be a learn-it-all.", "author": "Satya Nadella" },
-  { "text": "If you are not embarrassed by the first version of your product, you've launched too late.", "author": "Reid Hoffman" },
-  { "text": "Make something people want.", "author": "Paul Graham", "context": "Y Combinator's motto" },
-  { "text": "Competition is for losers.", "author": "Peter Thiel", "context": "The Wall Street Journal (2014)" },
-  { "text": "Seek first to understand, then to be understood.", "author": "Stephen R. Covey", "context": "The 7 Habits of Highly Effective People (1989)" },
-  { "text": "Separate the people from the problem.", "author": "Roger Fisher and William Ury", "context": "Getting to Yes (1981)" },
-  { "text": "Focus on interests, not positions.", "author": "Roger Fisher and William Ury", "context": "Getting to Yes (1981)" },
-  { "text": "Let us never negotiate out of fear. But let us never fear to negotiate.", "author": "John F. Kennedy", "context": "Inaugural address (1961)" },
-  { "text": "The price of greatness is responsibility.", "author": "Winston Churchill", "context": "Harvard University address (1943)" },
-  { "text": "Now this is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning.", "author": "Winston Churchill", "context": "Mansion House speech (1942)" },
-  { "text": "The only thing we have to fear is fear itself.", "author": "Franklin D. Roosevelt", "context": "First inaugural address (1933)" },
-  { "text": "The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood.", "author": "Theodore Roosevelt", "context": "\"Citizenship in a Republic\" (1910)" },
-  { "text": "Do what you can, with what you have, where you are.", "author": "Theodore Roosevelt", "context": "Autobiography (1913), quoting Squire Bill Widener" },
-  { "text": "You must do the thing you think you cannot do.", "author": "Eleanor Roosevelt", "context": "You Learn by Living (1960)" },
-  { "text": "When they go low, we go high.", "author": "Michelle Obama", "context": "Democratic National Convention (2016)" },
-  { "text": "While we are postponing, life speeds by.", "author": "Seneca", "context": "Letters to Lucilius, Letter 1" },
-  { "text": "It is not that we have a short time to live, but that we waste a lot of it.", "author": "Seneca", "context": "On the Shortness of Life" },
-  { "text": "The impediment to action advances action. What stands in the way becomes the way.", "author": "Marcus Aurelius", "context": "Meditations, Book 5" },
-  { "text": "Men are disturbed not by things, but by the principles and notions which they form concerning things.", "author": "Epictetus", "context": "Enchiridion, 5" },
-  { "text": "The unexamined life is not worth living.", "author": "Socrates", "context": "Plato, Apology" },
-  { "text": "The journey of a thousand miles begins with a single step.", "author": "Lao Tzu", "context": "Tao Te Ching, chapter 64" },
-  { "text": "The mind is not a vessel to be filled but a fire to be kindled.", "author": "Plutarch", "context": "Paraphrasing \"On Listening\"" },
-  { "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.", "author": "Will Durant", "context": "The Story of Philosophy (1926), summarising Aristotle" },
-  { "text": "Knowing is not enough; we must apply. Willing is not enough; we must do.", "author": "Johann Wolfgang von Goethe", "context": "Wilhelm Meister's Journeyman Years" },
-  { "text": "Well done is better than well said.", "author": "Benjamin Franklin", "context": "Poor Richard's Almanack (1737)" },
-  { "text": "Genius is one per cent inspiration, ninety-nine per cent perspiration.", "author": "Thomas Edison" },
-  { "text": "The important thing is not to stop questioning. Curiosity has its own reason for existing.", "author": "Albert Einstein", "context": "LIFE magazine (1955)" },
-  { "text": "If I have seen further it is by standing on the shoulders of Giants.", "author": "Isaac Newton", "context": "Letter to Robert Hooke (1675)" },
-  { "text": "The first principle is that you must not fool yourself—and you are the easiest person to fool.", "author": "Richard Feynman", "context": "Caltech commencement (1974)" },
-  { "text": "One never notices what has been done; one can only see what remains to be done.", "author": "Marie Curie", "context": "Letter to her brother (1894)" },
-  { "text": "Everything can be taken from a man but one thing: the last of the human freedoms—to choose one's attitude in any given set of circumstances.", "author": "Viktor E. Frankl", "context": "Man's Search for Meaning" },
-  { "text": "In the depth of winter, I finally learned that within me there lay an invincible summer.", "author": "Albert Camus", "context": "Return to Tipasa (1952)" },
-  { "text": "How wonderful it is that nobody need wait a single moment before starting to improve the world.", "author": "Anne Frank" },
-  { "text": "I am not afraid of storms, for I am learning how to sail my ship.", "author": "Louisa May Alcott", "context": "Little Women (1868)" },
-  { "text": "All we have to decide is what to do with the time that is given us.", "author": "J. R. R. Tolkien", "context": "The Fellowship of the Ring (1954)" }
+  {
+    "text": "The life of the law has not been logic: it has been experience.",
+    "author": "Oliver Wendell Holmes Jr.",
+    "context": "The Common Law (1881)"
+  },
+  {
+    "text": "A word is not a crystal, transparent and unchanged; it is the skin of a living thought and may vary greatly in color and content according to the circumstances and the time in which it is used.",
+    "author": "Oliver Wendell Holmes Jr.",
+    "context": "Towne v. Eisner (1918)"
+  },
+  {
+    "text": "Taxes are what we pay for civilized society.",
+    "author": "Oliver Wendell Holmes Jr.",
+    "context": "Compañía General de Tabacos v. Collector (1927), dissent"
+  },
+  {
+    "text": "Injustice anywhere is a threat to justice everywhere.",
+    "author": "Martin Luther King Jr.",
+    "context": "Letter from Birmingham Jail (1963)"
+  },
+  {
+    "text": "The arc of the moral universe is long, but it bends toward justice.",
+    "author": "Martin Luther King Jr.",
+    "context": "Adapting a line by Theodore Parker"
+  },
+  {
+    "text": "Education is the most powerful weapon which you can use to change the world.",
+    "author": "Nelson Mandela",
+    "context": "Speech launching the Mindset Network (2003)"
+  },
+  {
+    "text": "I learned that courage was not the absence of fear, but the triumph over it.",
+    "author": "Nelson Mandela",
+    "context": "Long Walk to Freedom (1994)"
+  },
+  {
+    "text": "Sunlight is said to be the best of disinfectants; electric light the most efficient policeman.",
+    "author": "Louis D. Brandeis",
+    "context": "Other People's Money (1914)"
+  },
+  {
+    "text": "If we would guide by the light of reason, we must let our minds be bold.",
+    "author": "Louis D. Brandeis",
+    "context": "New State Ice Co. v. Liebmann (1932), dissent"
+  },
+  {
+    "text": "Fight for the things that you care about, but do it in a way that will lead others to join you.",
+    "author": "Ruth Bader Ginsburg",
+    "context": "Radcliffe Day (2015)"
+  },
+  {
+    "text": "It is emphatically the province and duty of the judicial department to say what the law is.",
+    "author": "John Marshall",
+    "context": "Marbury v. Madison (1803)"
+  },
+  {
+    "text": "We are not final because we are infallible, but we are infallible only because we are final.",
+    "author": "Robert H. Jackson",
+    "context": "Brown v. Allen (1953), concurrence"
+  },
+  {
+    "text": "The spirit of liberty is the spirit which is not too sure that it is right.",
+    "author": "Learned Hand",
+    "context": "\"I Am an American\" Day address (1944)"
+  },
+  {
+    "text": "Be you never so high, the law is above you.",
+    "author": "Lord Denning",
+    "context": "Quoting Thomas Fuller, Gouriet v Union of Post Office Workers (1977)"
+  },
+  {
+    "text": "Justice should not only be done, but should manifestly and undoubtedly be seen to be done.",
+    "author": "Lord Hewart",
+    "context": "R v Sussex Justices, ex parte McCarthy (1924)"
+  },
+  {
+    "text": "It is better that ten guilty persons escape, than that one innocent suffer.",
+    "author": "William Blackstone",
+    "context": "Commentaries on the Laws of England (1769)"
+  },
+  {
+    "text": "The basic rule may perhaps be tersely put as bail, not jail.",
+    "author": "Justice V. R. Krishna Iyer",
+    "context": "State of Rajasthan v. Balchand (1977)"
+  },
+  {
+    "text": "However good a Constitution may be, it is sure to turn out bad because those who are called to work it, happen to be a bad lot.",
+    "author": "B. R. Ambedkar",
+    "context": "Constituent Assembly, 25 November 1949"
+  },
+  {
+    "text": "Educate, agitate, organise.",
+    "author": "B. R. Ambedkar"
+  },
+  {
+    "text": "I realized that the true function of a lawyer was to unite parties riven asunder.",
+    "author": "Mahatma Gandhi",
+    "context": "The Story of My Experiments with Truth"
+  },
+  {
+    "text": "At the stroke of the midnight hour, when the world sleeps, India will awake to life and freedom.",
+    "author": "Jawaharlal Nehru",
+    "context": "\"Tryst with Destiny\" speech (1947)"
+  },
+  {
+    "text": "Where the mind is without fear and the head is held high; where knowledge is free.",
+    "author": "Rabindranath Tagore",
+    "context": "Gitanjali, poem 35"
+  },
+  {
+    "text": "Arise, awake, and stop not till the goal is reached.",
+    "author": "Swami Vivekananda",
+    "context": "Drawing on the Katha Upanishad"
+  },
+  {
+    "text": "You have a right to your actions, but never to the fruits of your actions.",
+    "author": "Bhagavad Gita",
+    "context": "Chapter 2, verse 47 (a common translation)"
+  },
+  {
+    "text": "Discourage litigation. Persuade your neighbors to compromise whenever you can. Point out to them how the nominal winner is often a real loser—in fees, expenses, and waste of time.",
+    "author": "Abraham Lincoln",
+    "context": "Notes for a law lecture (c. 1850)"
+  },
+  {
+    "text": "Facts are stubborn things; and whatever may be our wishes, our inclinations, or the dictates of our passion, they cannot alter the state of facts and evidence.",
+    "author": "John Adams",
+    "context": "Defence of the British soldiers in the Boston Massacre trials (1770)"
+  },
+  {
+    "text": "You never really understand a person until you consider things from his point of view—until you climb into his skin and walk around in it.",
+    "author": "Harper Lee",
+    "context": "To Kill a Mockingbird (1960), Atticus Finch"
+  },
+  {
+    "text": "The law is reason unaffected by desire.",
+    "author": "Aristotle",
+    "context": "Politics, Book III"
+  },
+  {
+    "text": "Let the welfare of the people be the supreme law.",
+    "author": "Cicero",
+    "context": "De Legibus"
+  },
+  {
+    "text": "To no one will we sell, to no one deny or delay right or justice.",
+    "author": "Magna Carta",
+    "context": "Clause 40 (1215)"
+  },
+  {
+    "text": "The difference between the almost right word and the right word is really a large matter—'tis the difference between the lightning-bug and the lightning.",
+    "author": "Mark Twain",
+    "context": "Letter to George Bainton (1888)"
+  },
+  {
+    "text": "I have made this longer than usual because I have not had time to make it shorter.",
+    "author": "Blaise Pascal",
+    "context": "Provincial Letters (1657)"
+  },
+  {
+    "text": "Omit needless words.",
+    "author": "William Strunk Jr.",
+    "context": "The Elements of Style"
+  },
+  {
+    "text": "Never use a long word where a short one will do.",
+    "author": "George Orwell",
+    "context": "Politics and the English Language (1946)"
+  },
+  {
+    "text": "Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.",
+    "author": "Antoine de Saint-Exupéry",
+    "context": "Wind, Sand and Stars (1939)"
+  },
+  {
+    "text": "The best is the enemy of the good.",
+    "author": "Voltaire"
+  },
+  {
+    "text": "Good is the enemy of great.",
+    "author": "Jim Collins",
+    "context": "Good to Great (2001)"
+  },
+  {
+    "text": "Price is what you pay; value is what you get.",
+    "author": "Warren Buffett",
+    "context": "Berkshire Hathaway shareholder letter (2008)"
+  },
+  {
+    "text": "You only find out who is swimming naked when the tide goes out.",
+    "author": "Warren Buffett",
+    "context": "Berkshire Hathaway shareholder letter (2001)"
+  },
+  {
+    "text": "The investor's chief problem—and even his worst enemy—is likely to be himself.",
+    "author": "Benjamin Graham",
+    "context": "The Intelligent Investor"
+  },
+  {
+    "text": "The individual investor should act consistently as an investor and not as a speculator.",
+    "author": "Benjamin Graham",
+    "context": "The Intelligent Investor"
+  },
+  {
+    "text": "Invert, always invert.",
+    "author": "Charlie Munger",
+    "context": "Borrowing from the mathematician Carl Jacobi"
+  },
+  {
+    "text": "The difficulty lies, not in the new ideas, but in escaping from the old ones.",
+    "author": "John Maynard Keynes",
+    "context": "The General Theory, preface (1936)"
+  },
+  {
+    "text": "It is not from the benevolence of the butcher, the brewer, or the baker that we expect our dinner, but from their regard to their own interest.",
+    "author": "Adam Smith",
+    "context": "The Wealth of Nations (1776)"
+  },
+  {
+    "text": "There is nothing so useless as doing efficiently that which should not be done at all.",
+    "author": "Peter Drucker",
+    "context": "Harvard Business Review (1963)"
+  },
+  {
+    "text": "Only the paranoid survive.",
+    "author": "Andrew S. Grove",
+    "context": "Book title (1996)"
+  },
+  {
+    "text": "Stay hungry. Stay foolish.",
+    "author": "Steve Jobs",
+    "context": "Stanford commencement (2005), quoting the Whole Earth Catalog"
+  },
+  {
+    "text": "Your time is limited, so don't waste it living someone else's life.",
+    "author": "Steve Jobs",
+    "context": "Stanford commencement (2005)"
+  },
+  {
+    "text": "You can't connect the dots looking forward; you can only connect them looking backwards.",
+    "author": "Steve Jobs",
+    "context": "Stanford commencement (2005)"
+  },
+  {
+    "text": "The best way to predict the future is to invent it.",
+    "author": "Alan Kay",
+    "context": "Xerox PARC (1971)"
+  },
+  {
+    "text": "Don't be a know-it-all; be a learn-it-all.",
+    "author": "Satya Nadella"
+  },
+  {
+    "text": "If you are not embarrassed by the first version of your product, you've launched too late.",
+    "author": "Reid Hoffman"
+  },
+  {
+    "text": "Make something people want.",
+    "author": "Paul Graham",
+    "context": "Y Combinator's motto"
+  },
+  {
+    "text": "Competition is for losers.",
+    "author": "Peter Thiel",
+    "context": "The Wall Street Journal (2014)"
+  },
+  {
+    "text": "Seek first to understand, then to be understood.",
+    "author": "Stephen R. Covey",
+    "context": "The 7 Habits of Highly Effective People (1989)"
+  },
+  {
+    "text": "Separate the people from the problem.",
+    "author": "Roger Fisher and William Ury",
+    "context": "Getting to Yes (1981)"
+  },
+  {
+    "text": "Focus on interests, not positions.",
+    "author": "Roger Fisher and William Ury",
+    "context": "Getting to Yes (1981)"
+  },
+  {
+    "text": "Let us never negotiate out of fear. But let us never fear to negotiate.",
+    "author": "John F. Kennedy",
+    "context": "Inaugural address (1961)"
+  },
+  {
+    "text": "The price of greatness is responsibility.",
+    "author": "Winston Churchill",
+    "context": "Harvard University address (1943)"
+  },
+  {
+    "text": "Now this is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning.",
+    "author": "Winston Churchill",
+    "context": "Mansion House speech (1942)"
+  },
+  {
+    "text": "The only thing we have to fear is fear itself.",
+    "author": "Franklin D. Roosevelt",
+    "context": "First inaugural address (1933)"
+  },
+  {
+    "text": "The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood.",
+    "author": "Theodore Roosevelt",
+    "context": "\"Citizenship in a Republic\" (1910)"
+  },
+  {
+    "text": "Do what you can, with what you have, where you are.",
+    "author": "Theodore Roosevelt",
+    "context": "Autobiography (1913), quoting Squire Bill Widener"
+  },
+  {
+    "text": "You must do the thing you think you cannot do.",
+    "author": "Eleanor Roosevelt",
+    "context": "You Learn by Living (1960)"
+  },
+  {
+    "text": "When they go low, we go high.",
+    "author": "Michelle Obama",
+    "context": "Democratic National Convention (2016)"
+  },
+  {
+    "text": "While we are postponing, life speeds by.",
+    "author": "Seneca",
+    "context": "Letters to Lucilius, Letter 1"
+  },
+  {
+    "text": "It is not that we have a short time to live, but that we waste a lot of it.",
+    "author": "Seneca",
+    "context": "On the Shortness of Life"
+  },
+  {
+    "text": "The impediment to action advances action. What stands in the way becomes the way.",
+    "author": "Marcus Aurelius",
+    "context": "Meditations, Book 5"
+  },
+  {
+    "text": "Men are disturbed not by things, but by the principles and notions which they form concerning things.",
+    "author": "Epictetus",
+    "context": "Enchiridion, 5"
+  },
+  {
+    "text": "The unexamined life is not worth living.",
+    "author": "Socrates",
+    "context": "Plato, Apology"
+  },
+  {
+    "text": "The journey of a thousand miles begins with a single step.",
+    "author": "Lao Tzu",
+    "context": "Tao Te Ching, chapter 64"
+  },
+  {
+    "text": "The mind is not a vessel to be filled but a fire to be kindled.",
+    "author": "Plutarch",
+    "context": "Paraphrasing \"On Listening\""
+  },
+  {
+    "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    "author": "Will Durant",
+    "context": "The Story of Philosophy (1926), summarising Aristotle"
+  },
+  {
+    "text": "Knowing is not enough; we must apply. Willing is not enough; we must do.",
+    "author": "Johann Wolfgang von Goethe",
+    "context": "Wilhelm Meister's Journeyman Years"
+  },
+  {
+    "text": "Well done is better than well said.",
+    "author": "Benjamin Franklin",
+    "context": "Poor Richard's Almanack (1737)"
+  },
+  {
+    "text": "Genius is one per cent inspiration, ninety-nine per cent perspiration.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "The important thing is not to stop questioning. Curiosity has its own reason for existing.",
+    "author": "Albert Einstein",
+    "context": "LIFE magazine (1955)"
+  },
+  {
+    "text": "If I have seen further it is by standing on the shoulders of Giants.",
+    "author": "Isaac Newton",
+    "context": "Letter to Robert Hooke (1675)"
+  },
+  {
+    "text": "The first principle is that you must not fool yourself—and you are the easiest person to fool.",
+    "author": "Richard Feynman",
+    "context": "Caltech commencement (1974)"
+  },
+  {
+    "text": "One never notices what has been done; one can only see what remains to be done.",
+    "author": "Marie Curie",
+    "context": "Letter to her brother (1894)"
+  },
+  {
+    "text": "Everything can be taken from a man but one thing: the last of the human freedoms—to choose one's attitude in any given set of circumstances.",
+    "author": "Viktor E. Frankl",
+    "context": "Man's Search for Meaning"
+  },
+  {
+    "text": "In the depth of winter, I finally learned that within me there lay an invincible summer.",
+    "author": "Albert Camus",
+    "context": "Return to Tipasa (1952)"
+  },
+  {
+    "text": "How wonderful it is that nobody need wait a single moment before starting to improve the world.",
+    "author": "Anne Frank"
+  },
+  {
+    "text": "I am not afraid of storms, for I am learning how to sail my ship.",
+    "author": "Louisa May Alcott",
+    "context": "Little Women (1868)"
+  },
+  {
+    "text": "All we have to decide is what to do with the time that is given us.",
+    "author": "J. R. R. Tolkien",
+    "context": "The Fellowship of the Ring (1954)"
+  },
+  {
+    "text": "Justice delayed is justice denied.",
+    "author": "William E. Gladstone",
+    "context": "Commonly attributed maxim from his parliamentary speeches"
+  },
+  {
+    "text": "The law is the last result of human wisdom acting upon human experience for the benefit of the public.",
+    "author": "Samuel Johnson",
+    "context": "Boswell's Life of Johnson"
+  },
+  {
+    "text": "Equal justice under law is not merely a caption on the facade of the Supreme Court building; it is perhaps the most inspiring ideal of our society.",
+    "author": "Lewis F. Powell Jr.",
+    "context": "Address to the American Bar Association"
+  },
+  {
+    "text": "The great thing about our Constitution is that it can be changed; the bad thing is how difficult we have made that changing.",
+    "author": "Thurgood Marshall",
+    "context": "Bicentennial speech (1987)"
+  },
+  {
+    "text": "In our government the courts have proved to be the strongest protection in the end against tyranny and the excesses of popular and elected government.",
+    "author": "Robert H. Jackson",
+    "context": "The Struggle for Judicial Supremacy"
+  },
+  {
+    "text": "The Constitution is not neutral. It was designed to take the government off the backs of people.",
+    "author": "William O. Douglas",
+    "context": "Points of Rebellion (1970)"
+  },
+  {
+    "text": "Legal reasoning is like all other reasoning... insofar as it is a matter of using categories to organize and make sense of our experience.",
+    "author": "Cass R. Sunstein",
+    "context": "Legal Reasoning and Political Conflict"
+  },
+  {
+    "text": "Whoever undertakes to set himself up as a judge of Truth and Knowledge is shipwrecked by the laughter of the gods.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "The good lawyer is not the man who has an eye to every side and angle of contingency... but the man who by long and habitual and firmly planted associations has limited himself to a term.",
+    "author": "Karl N. Llewellyn",
+    "context": "The Bramble Bush (1930)"
+  },
+  {
+    "text": "Law and order exist for the purpose of establishing justice, and when they fail in this purpose, they become dangerously structured dams that block the flow of social progress.",
+    "author": "Martin Luther King Jr.",
+    "context": "Letter from Birmingham Jail (1963)"
+  },
+  {
+    "text": "The safety of the people shall be the highest law.",
+    "author": "Cicero",
+    "context": "De Legibus, adapted as 'Salus populi suprema lex esto'"
+  },
+  {
+    "text": "Where law ends, tyranny begins.",
+    "author": "William Pitt the Elder",
+    "context": "Speech in the House of Lords (1770)"
+  },
+  {
+    "text": "No man is above the law and no man is below it.",
+    "author": "Theodore Roosevelt",
+    "context": "Address at the laying of the cornerstone of the House Office Building (1908)"
+  },
+  {
+    "text": "The oppression of a hundred million people in India is intended to be, and is, one of the most dangerous experiments in the whole history of the world.",
+    "author": "Mahatma Gandhi",
+    "context": "Young India"
+  },
+  {
+    "text": "Rights are not given, they are taken.",
+    "author": "B. R. Ambedkar"
+  },
+  {
+    "text": "Law and order are not means to be used in place of reform.",
+    "author": "Robert F. Kennedy"
+  },
+  {
+    "text": "Somewhere in the world every ideal is somebody's reality.",
+    "author": "Jerome Frank",
+    "context": "Law and the Modern Mind (1930)"
+  },
+  {
+    "text": "The life of the law has been experience, and the felt necessities of the time.",
+    "author": "Oliver Wendell Holmes Jr.",
+    "context": "The Common Law (1881)"
+  },
+  {
+    "text": "It's not whether you get knocked down, it's whether you get up.",
+    "author": "Vince Lombardi"
+  },
+  {
+    "text": "Whether you think you can, or you think you can't—you're right.",
+    "author": "Henry Ford"
+  },
+  {
+    "text": "The way to get started is to quit talking and begin doing.",
+    "author": "Walt Disney"
+  },
+  {
+    "text": "If you don't design your own life plan, chances are you'll fall into someone else's plan.",
+    "author": "Jim Rohn"
+  },
+  {
+    "text": "A goal without a plan is just a wish.",
+    "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "text": "The compound effect of small, seemingly unimportant tasks, stacked one on top of the other, is what leads to extraordinary results.",
+    "author": "Darren Hardy",
+    "context": "The Compound Effect"
+  },
+  {
+    "text": "Discipline is the bridge between goals and accomplishment.",
+    "author": "Jim Rohn"
+  },
+  {
+    "text": "Success is the sum of small efforts, repeated day in and day out.",
+    "author": "Robert Collier"
+  },
+  {
+    "text": "We are what we repeatedly do.",
+    "author": "Aristotle",
+    "context": "As paraphrased by Will Durant in The Story of Philosophy"
+  },
+  {
+    "text": "The only place where success comes before work is in the dictionary.",
+    "author": "Vidal Sassoon"
+  },
+  {
+    "text": "Do not wait to strike till the iron is hot; but make it hot by striking.",
+    "author": "William B. Sprague"
+  },
+  {
+    "text": "Quality means doing it right when no one is looking.",
+    "author": "Henry Ford"
+  },
+  {
+    "text": "It always seems impossible until it's done.",
+    "author": "Nelson Mandela"
+  },
+  {
+    "text": "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "author": "Chinese proverb"
+  },
+  {
+    "text": "Vision without execution is just hallucination.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "The most difficult thing is the decision to act, the rest is merely tenacity.",
+    "author": "Amelia Earhart"
+  },
+  {
+    "text": "If you want to lift yourself up, lift up someone else.",
+    "author": "Booker T. Washington"
+  },
+  {
+    "text": "The function of leadership is to produce more leaders, not more followers.",
+    "author": "Ralph Nader"
+  },
+  {
+    "text": "Leadership and learning are indispensable to each other.",
+    "author": "John F. Kennedy",
+    "context": "Undelivered Dallas speech (22 November 1963)"
+  },
+  {
+    "text": "Management is doing things right; leadership is doing the right things.",
+    "author": "Peter Drucker"
+  },
+  {
+    "text": "The greatest leader is not necessarily the one who does the greatest things. He is the one that gets the people to do the greatest things.",
+    "author": "Ronald Reagan"
+  },
+  {
+    "text": "Try not to become a man of success, but rather try to become a man of value.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "A person who never made a mistake never tried anything new.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "Logic will get you from A to B. Imagination will take you everywhere.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "Failure is simply the opportunity to begin again, this time more intelligently.",
+    "author": "Henry Ford"
+  },
+  {
+    "text": "Obstacles are those frightful things you see when you take your eyes off your goal.",
+    "author": "Henry Ford"
+  },
+  {
+    "text": "If everyone is moving forward together, then success takes care of itself.",
+    "author": "Henry Ford"
+  },
+  {
+    "text": "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+    "author": "Zig Ziglar"
+  },
+  {
+    "text": "You don't have to be great to start, but you have to start to be great.",
+    "author": "Zig Ziglar"
+  },
+  {
+    "text": "People often say that motivation doesn't last. Well, neither does bathing. That's why we recommend it daily.",
+    "author": "Zig Ziglar"
+  },
+  {
+    "text": "In the middle of difficulty lies opportunity.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "An investment in knowledge pays the best interest.",
+    "author": "Benjamin Franklin"
+  },
+  {
+    "text": "Someone's sitting in the shade today because someone planted a tree a long time ago.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Risk comes from not knowing what you're doing.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Never invest in a business you cannot understand.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "It takes 20 years to build a reputation and five minutes to ruin it.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Time is your friend; impulse is your enemy.",
+    "author": "John C. Bogle",
+    "context": "Common Sense on Mutual Funds"
+  },
+  {
+    "text": "In investing, what is comfortable is rarely profitable.",
+    "author": "Robert Arnott"
+  },
+  {
+    "text": "The four most dangerous words in investing are: 'this time it's different.'",
+    "author": "Sir John Templeton"
+  },
+  {
+    "text": "An investment in yourself pays the best dividends.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Wide diversification is only required when investors do not understand what they are doing.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Formal education will make you a living; self-education will make you a fortune.",
+    "author": "Jim Rohn"
+  },
+  {
+    "text": "A budget is telling your money where to go instead of wondering where it went.",
+    "author": "Dave Ramsey"
+  },
+  {
+    "text": "The stock market is a device for transferring money from the impatient to the patient.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Rule No. 1: Never lose money. Rule No. 2: Never forget rule No. 1.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Do not save what is left after spending, but spend what is left after saving.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "Cash combined with courage in a crisis is priceless.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "The most important quality for an investor is temperament, not intellect.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "In business, the competition will bite you if you keep running; if you stand still, they will swallow you.",
+    "author": "William Knudsen Jr."
+  },
+  {
+    "text": "Chains of habit are too light to be felt until they are too heavy to be broken.",
+    "author": "Warren Buffett"
+  },
+  {
+    "text": "A ship in harbor is safe, but that is not what ships are built for.",
+    "author": "John A. Shedd",
+    "context": "Salt from My Attic (1928)"
+  },
+  {
+    "text": "The two most important days in your life are the day you are born and the day you find out why.",
+    "author": "Mark Twain"
+  },
+  {
+    "text": "It is not the critic who counts... The credit belongs to the man who is actually in the arena.",
+    "author": "Theodore Roosevelt",
+    "context": "\"Citizenship in a Republic\" (1910)"
+  },
+  {
+    "text": "I have learned over the years that when one's mind is made up, this diminishes fear.",
+    "author": "Rosa Parks"
+  },
+  {
+    "text": "You cannot shake hands with a clenched fist.",
+    "author": "Indira Gandhi"
+  },
+  {
+    "text": "The best way to find yourself is to lose yourself in the service of others.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "A nation's culture resides in the hearts and in the soul of its people.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "Freedom is never voluntarily given by the oppressor; it must be demanded by the oppressed.",
+    "author": "Martin Luther King Jr.",
+    "context": "Letter from Birmingham Jail (1963)"
+  },
+  {
+    "text": "Our lives begin to end the day we become silent about things that matter.",
+    "author": "Martin Luther King Jr."
+  },
+  {
+    "text": "Darkness cannot drive out darkness: only light can do that.",
+    "author": "Martin Luther King Jr.",
+    "context": "Strength to Love (1963)"
+  },
+  {
+    "text": "The time is always right to do what is right.",
+    "author": "Martin Luther King Jr."
+  },
+  {
+    "text": "I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin.",
+    "author": "Martin Luther King Jr.",
+    "context": "'I Have a Dream' speech (1963)"
+  },
+  {
+    "text": "In a gentle way, you can shake the world.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "Freedom is not worth having if it does not include the freedom to make mistakes.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "The greatness of a nation can be judged by the way its animals are treated.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "A man is but the product of his thoughts. What he thinks, he becomes.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "The unexamined belief is not worth holding.",
+    "author": "Bertrand Russell",
+    "context": "Paraphrase of a recurring Russell theme"
+  },
+  {
+    "text": "The trouble with the world is that the stupid are cocksure and the intelligent are full of doubt.",
+    "author": "Bertrand Russell"
+  },
+  {
+    "text": "To fear love is to fear life, and those who fear life are already three parts dead.",
+    "author": "Bertrand Russell"
+  },
+  {
+    "text": "Science may be described as the art of systematic over-simplification.",
+    "author": "Karl Popper"
+  },
+  {
+    "text": "All men are caught in an inescapable network of mutuality, tied in a single garment of destiny.",
+    "author": "Martin Luther King Jr.",
+    "context": "Letter from Birmingham Jail (1963)"
+  },
+  {
+    "text": "He who has a why to live can bear almost any how.",
+    "author": "Friedrich Nietzsche",
+    "context": "Twilight of the Idols"
+  },
+  {
+    "text": "That which does not kill us makes us stronger.",
+    "author": "Friedrich Nietzsche",
+    "context": "Twilight of the Idols"
+  },
+  {
+    "text": "The individual has always had to struggle to keep from being overwhelmed by the tribe.",
+    "author": "Friedrich Nietzsche"
+  },
+  {
+    "text": "There are two ways to live: you can live as if nothing is a miracle; you can live as if everything is a miracle.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "Not everything that counts can be counted, and not everything that can be counted counts.",
+    "author": "William Bruce Cameron",
+    "context": "Informal Sociology (1963); frequently misattributed to Albert Einstein"
+  },
+  {
+    "text": "To know that we know what we know, and that we do not know what we do not know, that is true knowledge.",
+    "author": "Confucius",
+    "context": "The Analects, Book II"
+  },
+  {
+    "text": "Real knowledge is to know the extent of one's ignorance.",
+    "author": "Confucius"
+  },
+  {
+    "text": "The man who moves a mountain begins by carrying away small stones.",
+    "author": "Confucius"
+  },
+  {
+    "text": "By three methods we may learn wisdom: first, by reflection; second, by imitation; third, by experience.",
+    "author": "Confucius"
+  },
+  {
+    "text": "He who conquers others is strong; he who conquers himself is mighty.",
+    "author": "Lao Tzu",
+    "context": "Tao Te Ching"
+  },
+  {
+    "text": "A good traveler has no fixed plans and is not intent on arriving.",
+    "author": "Lao Tzu",
+    "context": "Tao Te Ching"
+  },
+  {
+    "text": "Nature does not hurry, yet everything is accomplished.",
+    "author": "Lao Tzu",
+    "context": "Tao Te Ching"
+  },
+  {
+    "text": "When I let go of what I am, I become what I might be.",
+    "author": "Lao Tzu",
+    "context": "Tao Te Ching"
+  },
+  {
+    "text": "It is the mark of an educated mind to be able to entertain a thought without accepting it.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "Knowing yourself is the beginning of all wisdom.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "Educating the mind without educating the heart is no education at all.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "Patience is bitter, but its fruit is sweet.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "Happiness depends upon ourselves.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "The whole is greater than the sum of its parts.",
+    "author": "Aristotle",
+    "context": "Metaphysics"
+  },
+  {
+    "text": "The energy of the mind is the essence of life.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "I count him braver who overcomes his desires than him who conquers his enemies.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "Those who educate children well are more to be honored than they who produce them.",
+    "author": "Aristotle"
+  },
+  {
+    "text": "I know that I am intelligent, because I know that I know nothing.",
+    "author": "Socrates"
+  },
+  {
+    "text": "The only true wisdom is in knowing you know nothing.",
+    "author": "Socrates"
+  },
+  {
+    "text": "No one can make you feel inferior without your consent.",
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "text": "The future belongs to those who believe in the beauty of their dreams.",
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "text": "It is not fair to ask of others what you are not willing to do yourself.",
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "text": "Happiness is not a goal; it is a by-product.",
+    "author": "Eleanor Roosevelt"
+  },
+  {
+    "text": "The purpose of our lives is to be happy.",
+    "author": "The 14th Dalai Lama"
+  },
+  {
+    "text": "Be kind whenever possible. It is always possible.",
+    "author": "The 14th Dalai Lama"
+  },
+  {
+    "text": "Remember that not getting what you want is sometimes a wonderful stroke of luck.",
+    "author": "The 14th Dalai Lama"
+  },
+  {
+    "text": "Share our similarities, celebrate our differences.",
+    "author": "The 14th Dalai Lama"
+  },
+  {
+    "text": "Old friends pass away, new friends appear. It is just like the days. An old day passes, a new day arrives.",
+    "author": "The 14th Dalai Lama"
+  },
+  {
+    "text": "Silence is sometimes the best answer.",
+    "author": "The 14th Dalai Lama"
+  },
+  {
+    "text": "I have not failed. I've just found 10,000 ways that won't work.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "Opportunity is missed by most people because it is dressed in overalls and looks like work.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "Many of life's failures are people who did not realize how close they were to success when they gave up.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "There is a way to do it better—find it.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "I never did anything worth doing by accident.",
+    "author": "Thomas Edison"
+  },
+  {
+    "text": "The scientist is not the person who gives the right answers, he's the one who asks the right questions.",
+    "author": "Claude Lévi-Strauss"
+  },
+  {
+    "text": "Somewhere, something incredible is waiting to be known.",
+    "author": "Carl Sagan"
+  },
+  {
+    "text": "Extraordinary claims require extraordinary evidence.",
+    "author": "Carl Sagan",
+    "context": "Cosmos (1980)"
+  },
+  {
+    "text": "The absence of evidence is not the evidence of absence.",
+    "author": "Carl Sagan"
+  },
+  {
+    "text": "For small creatures such as we, the vastness is bearable only through love.",
+    "author": "Carl Sagan",
+    "context": "Contact (1985)"
+  },
+  {
+    "text": "If you wish to make an apple pie from scratch, you must first invent the universe.",
+    "author": "Carl Sagan",
+    "context": "Cosmos (1980)"
+  },
+  {
+    "text": "Science is not only compatible with spirituality; it is a profound source of spirituality.",
+    "author": "Carl Sagan"
+  },
+  {
+    "text": "We are made of star-stuff.",
+    "author": "Carl Sagan",
+    "context": "Cosmos (1980)"
+  },
+  {
+    "text": "I have no special talent. I am only passionately curious.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "Imagination is more important than knowledge.",
+    "author": "Albert Einstein",
+    "context": "What Life Means to Einstein (1929 interview)"
+  },
+  {
+    "text": "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "The important thing is not to stop questioning.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "Peace cannot be kept by force; it can only be achieved by understanding.",
+    "author": "Albert Einstein"
+  },
+  {
+    "text": "Strength does not come from physical capacity. It comes from an indomitable will.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "Action expresses priorities.",
+    "author": "Mahatma Gandhi"
+  },
+  {
+    "text": "There is nothing permanent except change.",
+    "author": "Heraclitus"
+  },
+  {
+    "text": "No man ever steps in the same river twice, for it's not the same river and he's not the same man.",
+    "author": "Heraclitus"
+  },
+  {
+    "text": "Character is destiny.",
+    "author": "Heraclitus"
+  },
+  {
+    "text": "The only thing that is constant is change.",
+    "author": "Heraclitus"
+  },
+  {
+    "text": "I think, therefore I am.",
+    "author": "René Descartes",
+    "context": "Discourse on the Method (1637)"
+  },
+  {
+    "text": "It is not enough to have a good mind; the main thing is to use it well.",
+    "author": "René Descartes"
+  },
+  {
+    "text": "Divide each difficulty into as many parts as is feasible and necessary to resolve it.",
+    "author": "René Descartes"
+  },
+  {
+    "text": "Whereof one cannot speak, thereof one must be silent.",
+    "author": "Ludwig Wittgenstein",
+    "context": "Tractatus Logico-Philosophicus (1921)"
+  },
+  {
+    "text": "The limits of my language mean the limits of my world.",
+    "author": "Ludwig Wittgenstein",
+    "context": "Tractatus Logico-Philosophicus (1921)"
+  },
+  {
+    "text": "A serious and good philosophical work could be written consisting entirely of jokes.",
+    "author": "Ludwig Wittgenstein"
+  },
+  {
+    "text": "Man is condemned to be free.",
+    "author": "Jean-Paul Sartre",
+    "context": "Being and Nothingness (1943)"
+  },
+  {
+    "text": "Freedom is what you do with what's been done to you.",
+    "author": "Jean-Paul Sartre"
+  },
+  {
+    "text": "Life has no meaning a priori... It is up to you to give it a meaning.",
+    "author": "Jean-Paul Sartre"
+  },
+  {
+    "text": "One is not born, but rather becomes, a woman.",
+    "author": "Simone de Beauvoir",
+    "context": "The Second Sex (1949)"
+  },
+  {
+    "text": "Change your life today. Don't gamble on the future, act now, without delay.",
+    "author": "Simone de Beauvoir"
+  },
+  {
+    "text": "The privilege of a lifetime is to become who you truly are.",
+    "author": "Carl Jung"
+  },
+  {
+    "text": "Until you make the unconscious conscious, it will direct your life and you will call it fate.",
+    "author": "Carl Jung"
+  },
+  {
+    "text": "Everything that irritates us about others can lead us to an understanding of ourselves.",
+    "author": "Carl Jung"
+  },
+  {
+    "text": "Who looks outside, dreams; who looks inside, awakes.",
+    "author": "Carl Jung"
+  },
+  {
+    "text": "Knowing your own darkness is the best method for dealing with the darknesses of other people.",
+    "author": "Carl Jung"
+  },
+  {
+    "text": "When we are no longer able to change a situation, we are challenged to change ourselves.",
+    "author": "Viktor E. Frankl",
+    "context": "Man's Search for Meaning"
+  },
+  {
+    "text": "Those who have a 'why' to live, can bear with almost any 'how'.",
+    "author": "Viktor E. Frankl",
+    "context": "Man's Search for Meaning, quoting Nietzsche"
+  },
+  {
+    "text": "To live is the rarest thing in the world. Most people exist, that is all.",
+    "author": "Oscar Wilde"
+  },
+  {
+    "text": "Be yourself; everyone else is already taken.",
+    "author": "Oscar Wilde"
+  },
+  {
+    "text": "We are all in the gutter, but some of us are looking at the stars.",
+    "author": "Oscar Wilde",
+    "context": "Lady Windermere's Fan (1892)"
+  },
+  {
+    "text": "Experience is simply the name we give our mistakes.",
+    "author": "Oscar Wilde",
+    "context": "Lady Windermere's Fan (1892)"
+  },
+  {
+    "text": "The truth is rarely pure and never simple.",
+    "author": "Oscar Wilde",
+    "context": "The Importance of Being Earnest (1895)"
+  },
+  {
+    "text": "It was the best of times, it was the worst of times.",
+    "author": "Charles Dickens",
+    "context": "A Tale of Two Cities (1859)"
+  },
+  {
+    "text": "No one is useless in this world who lightens the burdens of another.",
+    "author": "Charles Dickens"
+  },
+  {
+    "text": "Have a heart that never hardens, and a temper that never tires, and a touch that never hurts.",
+    "author": "Charles Dickens"
+  },
+  {
+    "text": "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    "author": "Jane Austen",
+    "context": "Pride and Prejudice (1813)"
+  },
+  {
+    "text": "I declare after all there is no enjoyment like reading!",
+    "author": "Jane Austen",
+    "context": "Pride and Prejudice (1813)"
+  },
+  {
+    "text": "All that we are is the result of what we have thought.",
+    "author": "The Buddha",
+    "context": "Dhammapada, verse 1"
+  },
+  {
+    "text": "Arise! Awake! Approach the great and learn.",
+    "author": "Katha Upanishad"
+  },
+  {
+    "text": "As is the human body, so is the cosmic body. As is the human mind, so is the cosmic mind.",
+    "author": "Upanishads"
+  },
+  {
+    "text": "You are what your deep, driving desire is.",
+    "author": "Brihadaranyaka Upanishad"
+  },
+  {
+    "text": "Truth alone triumphs.",
+    "author": "Mundaka Upanishad",
+    "context": "Satyameva Jayate, India's national motto"
+  },
+  {
+    "text": "A person can grow only as much as their horizon allows.",
+    "author": "John Powell"
+  },
+  {
+    "text": "We must accept finite disappointment, but never lose infinite hope.",
+    "author": "Martin Luther King Jr."
+  },
+  {
+    "text": "The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.",
+    "author": "Martin Luther King Jr."
+  },
+  {
+    "text": "A right delayed is a right denied.",
+    "author": "Martin Luther King Jr.",
+    "context": "Letter from Birmingham Jail (1963)"
+  },
+  {
+    "text": "Injustice anywhere is a threat to justice everywhere—we are caught in an inescapable network of mutuality.",
+    "author": "Martin Luther King Jr.",
+    "context": "Letter from Birmingham Jail (1963)"
+  }
 ]
