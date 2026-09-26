@@ -17,7 +17,7 @@ interface Props {
   strokeWidth?: number;
 }
 
-const { name, size = 20, class: className, label, strokeWidth = 1.75 } = Astro.props;
+const { name, size = 20, class: className, label, strokeWidth = 1.75, ...rest } = Astro.props;
 ---
 
 <svg
@@ -36,4 +36,5 @@ const { name, size = 20, class: className, label, strokeWidth = 1.75 } = Astro.p
   aria-label={label}
   focusable="false"
   set:html={icons[name]}
+  {...rest}
 ></svg>

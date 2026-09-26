@@ -30,6 +30,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+    <link rel="apple-touch-icon" href={url('/icons/apple-touch-icon.png')} />
+    <link rel="manifest" href={url('/manifest.webmanifest')} />
     <meta name="theme-color" content="#f7f6f2" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -72,7 +74,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
     <Header />
 
-    <main id="main" class="pb-10">
+    <main id="main" data-pagefind-body class="pb-10">
       <slot />
     </main>
 
@@ -85,6 +87,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       // Count today as an active day for the streak widget
       import { recordVisit } from '../lib/activity';
       recordVisit();
+    </script>
+
+    <div id="__sw" data-sw-url={url('/sw.js')} data-sw-scope={url('/')} class="hidden"></div>
+    <script>
+      // Register the service worker for offline reading (production only —
+      // running it in dev fights Astro's own dev-server caching/HMR).
+      if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+        const el = document.getElementById('__sw')!;
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register(el.dataset.swUrl!, { scope: el.dataset.swScope! }).catch(() => {
+            /* offline support just won't be available — the site still works fully online */
+          });
+        });
+      }
     </script>
   </body>
 </html>

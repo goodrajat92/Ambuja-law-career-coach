@@ -41,7 +41,7 @@ const page = navItem('/notes');
           <input type="search" data-notes-search placeholder="Search notes..." class="w-full min-w-0 bg-transparent text-sm text-fg placeholder:text-muted focus:outline-none" />
         </label>
 
-        <select data-notes-tag-filter class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+        <select data-notes-tag-filter aria-label="Filter by tag" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
           <option value="">All tags</option>
         </select>
 
@@ -65,6 +65,7 @@ const page = navItem('/notes');
           <input
             type="text"
             data-note-form-title
+            aria-label="Note title"
             placeholder="Title"
             required
             class="min-h-11 rounded-xl border border-border bg-surface px-3 text-sm text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
@@ -72,11 +73,13 @@ const page = navItem('/notes');
           <input
             type="text"
             data-note-form-tags
+            aria-label="Note tags"
             placeholder="Tags, comma separated (e.g. term-sheet, follow-up)"
             class="min-h-11 rounded-xl border border-border bg-surface px-3 text-sm text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
           />
           <textarea
             data-note-form-body
+            aria-label="Note body (Markdown supported)"
             rows="8"
             placeholder="Write in Markdown: # headings, **bold**, *italic*, - lists, [links](https://...)"
             class="resize-y rounded-xl border border-border bg-surface p-3 text-sm leading-relaxed text-fg placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"

@@ -41,13 +41,15 @@
   --danger-soft: #fdecef;
 
   /* Category colors (news + learn tags). Used as text; backgrounds are
-     tinted versions via color-mix in the Tag component. */
+     tinted versions via color-mix in the Tag component. Each value here
+     is checked (scripts none committed — verified ad hoc against real
+     rendered pixels) to clear 4.5:1 against its own 12%-tint background. */
   --cat-1: #3b4bc8; /* indigo */
-  --cat-2: #7c3aed; /* violet */
-  --cat-3: #0f766e; /* teal */
+  --cat-2: #7738e4; /* violet — darkened ~4% from #7c3aed for AA contrast */
+  --cat-3: #0e6d65; /* teal — darkened ~8% from #0f766e for AA contrast */
   --cat-4: #be123c; /* rose */
-  --cat-5: #a4520a; /* amber */
-  --cat-6: #15803d; /* green */
+  --cat-5: #9d4f0a; /* amber — darkened ~4% from #a4520a for AA contrast */
+  --cat-6: #127136; /* green — darkened ~12% from #15803d for AA contrast */
   --cat-7: #0369a1; /* sky */
   --cat-8: #52525b; /* slate */
 
@@ -186,6 +188,19 @@
   background:
     radial-gradient(60rem 30rem at 10% -10%, var(--glow-1), transparent 60%),
     radial-gradient(50rem 26rem at 95% -5%, var(--glow-2), transparent 60%);
+}
+
+/* Pagefind's default search UI, mapped to our tokens instead of its
+   own blue default theme (see src/pages/search.astro). */
+#search {
+  --pagefind-ui-primary: var(--primary);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--surface);
+  --pagefind-ui-border: var(--border);
+  --pagefind-ui-tag: var(--surface-2);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 0.75rem;
+  --pagefind-ui-font: var(--font-sans);
 }
 
 /* Long-form reading: map the typography plugin to our tokens */

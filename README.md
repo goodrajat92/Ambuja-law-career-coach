@@ -22,19 +22,22 @@ for what's done and what's next.
 | **News** | Daily legal and deal news from India and abroad, filterable by region and category |
 | **Think Ahead** | Trend briefs, career paths, a skills roadmap, reading list, and weekly reflections |
 | **Notes** | A private notebook stored only in the browser, with export/import |
+| **Search** | Site-wide search (Pagefind) across everything above |
 
-Only **Home** and the placeholder pages for the other tabs are built so far
-(Phase 0/1 of the roadmap). Each placeholder page lists exactly what its
-phase will add, so it doubles as an in-app roadmap.
+All seven phases in [ROADMAP.md](ROADMAP.md) are built; the file tracks the
+smaller gaps still open within each (e.g. the quote list is 86/365+, Learn is
+8/~10 topics, Practice is 1/2–3 exercises per sub-tab).
 
 ## Tech stack
 
 - **[Astro](https://astro.build)** (static output) + TypeScript
 - **Tailwind CSS 4** (via `@tailwindcss/vite`) + `@tailwindcss/typography`
 - Self-hosted fonts: **Inter** (UI/body) and **Fraunces** (headings/quotes), via `@fontsource-variable`
-- **No backend, no database.** Personal data (theme, streak, notes) lives in the browser (`localStorage`, IndexedDB later)
+- **No backend, no database.** Personal data (theme, streak, notes) lives in the browser — `localStorage` for small state, **IndexedDB** for Notes (`src/lib/notesDb.ts`, behind a storage-agnostic interface so a future cloud sync could implement the same one)
+- **[Pagefind](https://pagefind.app)** for static, client-side search (`/search`) — its index is built by a `pagefind` CLI step chained onto `npm run build`, after Astro's own build
+- **PWA**: installable, with a service worker (`public/sw.js`) that caches pages you've actually visited for offline reading (network-first, so you always get fresh content when online)
 - **GitHub Actions** for the daily news fetch and for building + deploying to **GitHub Pages**
-- Optional AI enrichment via the Claude API, called only from GitHub Actions — never from the browser, never with a key in client code
+- Optional AI enrichment via the Claude API (`scripts/ai-enrich.mjs`), called only from GitHub Actions — never from the browser, never with a key in client code, and scoped to summarizing/categorizing news only (it does not auto-generate Learn/Practice/Think Ahead content — see that script's own comments for why)
 
 ## Getting started
 
@@ -48,9 +51,10 @@ npm run dev        # http://localhost:4321/Ambuja-law-career-coach/
 Other scripts:
 
 ```bash
-npm run build      # production build to dist/ — must pass before any feature is "done"
-npm run preview    # serve the production build locally
+npm run build      # astro build, then pagefind indexes dist/ — must pass before any feature is "done"
+npm run preview    # serve the production build locally (search and the service worker only work against this, not `dev`)
 npm run check      # astro check — type-checks .astro and .ts files
+npm run gen:icons   # regenerate public/icons/*.png from the SVG source, if the brand mark changes
 ```
 
 > The dev/preview URLs include the `/Ambuja-law-career-coach` base path because
@@ -124,6 +128,14 @@ exist):
 4. Commit the refreshed data
 5. Build and deploy to GitHub Pages — **in the same run**, because commits
    made by the workflow's own token don't trigger other workflow runs
+
+## Testing tooling
+
+**Playwright** is a dev dependency (not shipped to production — `dist/`
+contains none of it). It's used for `npm run gen:icons` and for this
+project's own QA during development (overflow sweeps across viewport
+widths, full interaction tests of things like the Notes CRUD flow or the
+offline service worker) rather than for browsing the live site.
 
 ## Content and accuracy rules
 

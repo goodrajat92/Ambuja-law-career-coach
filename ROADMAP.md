@@ -55,7 +55,14 @@ Update this file whenever a feature is finished.
   - [x] Reading list (`src/data/reading-list.json`, 8 items)
   - [x] Weekly reflection: 10 prompts, rotates once a week (deterministic, `pickForWeek` in `src/lib/daily.ts`), answer autosaves as a draft and saves to Notes on request
   - [ ] Optional AI-generated weekly "what's changing" brief — deferred to Phase 7's optional AI step
-- [ ] **Phase 7 — Polish:** Pagefind search, PWA, Lighthouse audit, optional AI enrichment
+- [x] **Phase 7 — Polish**
+  - [x] Pagefind search (`npm run build` chains `pagefind --site dist`): a `/search` page using Pagefind's Default UI, themed to match the site's tokens, scoped to `<main>` via `data-pagefind-body`. Verified end-to-end — searches for "anti-dilution" and "CIRP timeline" return correct, cross-linked results (Learn topics *and* the Practice exercises that reference them)
+  - [x] PWA: `manifest.webmanifest`, real PNG icons generated from the SVG source (`npm run gen:icons`, via Playwright — no new image-processing dependency), and a service worker (`public/sw.js`) — network-first for pages (so content stays fresh), cache-first for hashed static assets, with an offline fallback page. Verified end-to-end: registered, activated, caches a visited page, serves it back while offline, and falls back to `/offline` for an unvisited page while offline
+  - [x] Lighthouse audit (mobile, simulated throttling) across every page type: **Accessibility 100, Best Practices 100, SEO 100 everywhere**; Performance 94–99 (one outlier reading was re-run and confirmed to be this dev machine's own CPU contention, not a site issue)
+  - [x] Fixed 3 real accessibility issues the audit surfaced: 7 unlabeled filter/form `<select>`/`<input>`/`<textarea>` elements (added `aria-label`/`aria-labelledby`), a skipped heading level (h1→h3) on the News/Learn card grids (now h1→h2), and 4 of the 8 category tag colors falling just under 4.5:1 contrast in light mode (darkened 4–12%, imperceptible, all now ≥4.6:1)
+  - [x] Fixed a real, previously-invisible bug caught only by listening for page errors during this audit: `Icon.astro` didn't forward passthrough attributes (like `data-mark-read-icon`), so `MarkAsRead`'s icon-color toggle was silently no-op-ing on every click
+  - [x] `scripts/ai-enrich.mjs`: optional Claude API news enrichment (original summaries + category correction), gracefully skipping (exit 0) when `ANTHROPIC_API_KEY` is unset — deliberately does **not** auto-generate new Learn/Practice/Think Ahead content, since unsupervised AI writing legal content conflicts with this project's "never fabricate" rule
+  - [ ] Pagefind's newer "Component UI" (vs. the Default UI used here) would give more customization/accessibility — worth revisiting later, non-urgent since Default UI is still fully supported
 
 ## Notes for whoever picks this up next
 

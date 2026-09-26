@@ -14,26 +14,26 @@ const allTags = [...new Set(topics.flatMap((t) => t.data.tags))].sort();
 ---
 
 <div data-learn-explorer>
-  <div class="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-4 shadow-card">
+  <div data-pagefind-ignore class="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-4 shadow-card">
     <label class="flex w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-surface-2 px-3 py-2 sm:w-auto sm:min-w-[14rem] sm:flex-1">
       <Icon name="book" size={16} class="shrink-0 text-muted" />
       <span class="sr-only">Search topics</span>
       <input type="search" data-filter="search" placeholder="Search topics..." class="w-full min-w-0 bg-transparent text-sm text-fg placeholder:text-muted focus:outline-none" />
     </label>
 
-    <select data-filter="category" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="category" aria-label="Filter by category" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">All categories</option>
       {usedCategories.map((c) => <option value={c.slug}>{c.label}</option>)}
     </select>
 
-    <select data-filter="level" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="level" aria-label="Filter by level" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">All levels</option>
       <option value="beginner">Beginner</option>
       <option value="intermediate">Intermediate</option>
       <option value="advanced">Advanced</option>
     </select>
 
-    <select data-filter="tag" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="tag" aria-label="Filter by tag" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">All tags</option>
       {allTags.map((t) => <option value={t}>{t}</option>)}
     </select>

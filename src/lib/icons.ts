@@ -29,6 +29,7 @@ export const icons = {
   download: '<path d="M12 15V3"/><path d="m7 10 5 5 5-5"/><path d="M20 21H4"/>',
   upload: '<path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M20 21H4"/>',
   plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
 } as const;
 
 export type IconName = keyof typeof icons;

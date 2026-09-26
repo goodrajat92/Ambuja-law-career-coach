@@ -6,10 +6,11 @@
   "description": "A personal career and growth coach website for corporate lawyers.",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist --output-path dist/pagefind",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "gen:icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.3.0",
@@ -21,6 +22,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "pagefind": "^1.5.2",
+    "playwright": "^1.63.0",
     "typescript": "^6.0.3"
   }
 }

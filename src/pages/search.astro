@@ -1,0 +1,41 @@
+---
+/**
+ * Site-wide search (Phase 7), built on Pagefind.
+ *
+ * Pagefind isn't a normal dependency you import: `pagefind --site dist`
+ * runs AFTER `astro build` (see package.json's build script) and writes
+ * its index + UI bundle to dist/pagefind/, alongside this page. So the
+ * script/style below are loaded as plain runtime assets (`is:inline`,
+ * not bundled by Vite) — they don't exist yet during `astro dev` or at
+ * build time, only in the final built site. `npm run dev` will show an
+ * empty search box; `npm run build && npm run preview` shows the real
+ * thing.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { url } from '../lib/links';
+---
+
+<BaseLayout title="Search" description="Search across Learn, Practice, News and Think Ahead.">
+  <PageHeader eyebrow="Find anything" title="Search the site" description="Across Learn, Practice, News and Think Ahead." />
+  <Container size="narrow" class="pb-16">
+    <div id="search"></div>
+    <p id="search-fallback" class="hidden text-sm text-muted">
+      Search isn't available in local development — run <code class="rounded bg-surface-2 px-1.5 py-0.5">npm run build</code> and
+      <code class="rounded bg-surface-2 px-1.5 py-0.5">npm run preview</code> to try it against a real build.
+    </p>
+  </Container>
+
+  <link rel="stylesheet" href={url('/pagefind/pagefind-ui.css')} />
+  <script is:inline define:vars={{ src: url('/pagefind/pagefind-ui.js') }}>
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => {
+      // eslint-disable-next-line no-undef
+      new PagefindUI({ element: '#search', showSubResults: true, showImages: false });
+    };
+    script.onerror = () => document.getElementById('search-fallback')?.classList.remove('hidden');
+    document.body.appendChild(script);
+  </script>
+</BaseLayout>

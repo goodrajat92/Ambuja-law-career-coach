@@ -24,7 +24,7 @@ const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short
 ---
 
 <div data-news-explorer>
-  <div class="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-4 shadow-card">
+  <div data-pagefind-ignore class="flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-surface p-4 shadow-card">
     <label class="flex w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-surface-2 px-3 py-2 sm:w-auto sm:min-w-[14rem] sm:flex-1">
       <Icon name="newspaper" size={16} class="shrink-0 text-muted" />
       <span class="sr-only">Search headlines</span>
@@ -36,17 +36,17 @@ const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short
       />
     </label>
 
-    <select data-filter="region" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="region" aria-label="Filter by region" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">All regions</option>
       {regions.map((r) => <option value={r}>{r}</option>)}
     </select>
 
-    <select data-filter="category" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="category" aria-label="Filter by category" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">All categories</option>
       {newsCategories.map((c) => <option value={c.slug}>{c.label}</option>)}
     </select>
 
-    <select data-filter="range" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="range" aria-label="Filter by date range" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">Any time</option>
       <option value="1">Last 24 hours</option>
       <option value="7">Last 7 days</option>
@@ -54,7 +54,7 @@ const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short
       <option value="90">Last 90 days</option>
     </select>
 
-    <select data-filter="source" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
+    <select data-filter="source" aria-label="Filter by source" class="min-h-11 rounded-xl border border-border bg-surface-2 px-3 text-sm text-fg">
       <option value="">All sources</option>
       {sources.map((s) => <option value={s}>{s}</option>)}
     </select>
@@ -93,10 +93,10 @@ const dateFmt = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short
                   {categoryLabel.get(item.category) ?? item.category}
                 </Tag>
               </div>
-              <h3 class="mt-2 flex items-start gap-2 font-serif text-lg font-semibold leading-snug text-fg">
+              <h2 class="mt-2 flex items-start gap-2 font-serif text-lg font-semibold leading-snug text-fg">
                 <span class="flex-1">{item.headline}</span>
                 <Icon name="arrow-right" size={18} class="mt-1 shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-primary" />
-              </h3>
+              </h2>
               {item.summary && <p class="mt-1.5 text-sm leading-relaxed text-muted">{item.summary}</p>}
             </a>
             <div class="mt-3">
