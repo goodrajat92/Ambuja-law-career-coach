@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Card from '../../components/Card.astro';
-import ComingSoon from '../../components/ComingSoon.astro';
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import SubTabs from '../../components/SubTabs.astro';
@@ -45,16 +44,5 @@ for (const ex of exercises) countBySubTab.set(ex.data.subTab, (countBySubTab.get
         })
       }
     </ul>
-
-    <section class="mt-12">
-      <ComingSoon
-        phase={4}
-        title="Still growing"
-        items={[
-          'One exercise per sub-tab is seeded so far — 2–3 per sub-tab is the target',
-          'Spaced repetition for the quiz sub-tab (Phase 7)',
-        ]}
-      />
-    </section>
   </Container>
 </BaseLayout>

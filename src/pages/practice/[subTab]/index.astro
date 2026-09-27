@@ -8,7 +8,6 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Container from '../../../components/Container.astro';
 import Card from '../../../components/Card.astro';
-import ComingSoon from '../../../components/ComingSoon.astro';
 import Icon from '../../../components/Icon.astro';
 import PageHeader from '../../../components/PageHeader.astro';
 import SubTabs from '../../../components/SubTabs.astro';
@@ -73,9 +72,5 @@ const difficultyStyle = {
         </div>
       )
     }
-
-    <section class="mt-12">
-      <ComingSoon phase={4} title="More on the way" items={['2–3 exercises per sub-tab is the target — more are being added over time', 'Spaced repetition for the quiz sub-tab (Phase 7)']} />
-    </section>
   </Container>
 </BaseLayout>
